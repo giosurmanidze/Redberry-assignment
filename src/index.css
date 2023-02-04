@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    width: 1920px;
+    height: 1080px;
+  }
+  
+  @font-face {
+    font-family: HelveticaNeue;
+    src: url("/src/assets/fonts/HelveticaNeue.ttc");
+  }
+  
