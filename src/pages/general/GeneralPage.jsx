@@ -1,21 +1,19 @@
 import "./style/styles.css";
 import Resume from "../../components/Resume";
 import arrowIcon from "../../assets/images/Vector.png";
+import PageHeader from "../../components/PageHeader";
+import { Link } from "react-router-dom";
 
 const GeneralPage = () => {
   return (
     <div className="general__screen">
       <div className="arrow__icon">
-        <img src={arrowIcon} alt="arrow" />
+        <Link to="/">
+          <img src={arrowIcon} alt="arrow" />
+        </Link>
       </div>
       <div className="general__screen--left">
-        <div className="general__screen--header">
-          <div className="top">
-            <h3>პირადი ინფო</h3>
-            <p className="general__screen--status">1/3</p>
-          </div>
-          <div className="general__screen--line" />
-        </div>
+        <PageHeader title={"პირადი ინფო"} status={"1/3"} />
         <form>
           <div className="general__screen--inputs">
             <div className="first__two--inputs">
