@@ -1,0 +1,50 @@
+.landing__screen {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  height: 100%;
+  width: 100%;
+  background: url("/src/assets/images/shutterstock_2189773743 1.png");
+}
+
+.landing__top img {
+  position: absolute;
+  width: 236px;
+  height: 38px;
+  left: 70px;
+  top: 25px;
+}
+.landing__top--line {
+  position: absolute;
+  height: 0px;
+  left: 70px;
+  right: 70px;
+  top: 89px;
+  border: 1px solid #1a1a1a;
+}
+.agency__logo {
+  position: absolute;
+  width: 299px;
+  height: 299px;
+  left: 1050px;
+  top: 473px;
+  z-index: -5;
+}
+
+.landing__screen button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 464px;
+  height: 60px;
+  left: calc(50% - 464px / 2);
+  top: 513px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 20px;
+  font-family: HelveticaNeue;
+}

@@ -1,0 +1,150 @@
+.general__screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #f9f9f9;
+}
+.general__screen--left .general__screen--header {
+  font-size: 24px;
+}
+.general__screen--line {
+  height: 0px;
+  width: 798px;
+  border: 1px solid #1a1a1a;
+}
+form .general__screen--inputs h3,
+form .last--inputs h3 {
+  font-size: 16px;
+  font-family: HelveticaNeue;
+}
+
+.general__screen--header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-right: 60px;
+  width: 100%;
+}
+.general__screen--header .top {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 40px;
+}
+.arrow__icon {
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 45px;
+  margin-left: 48px;
+}
+.arrow__icon img {
+  width: 9.21px;
+  height: 16px;
+}
+.general__screen--left h3 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.top h3 {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: HelveticaNeue;
+}
+
+.general__screen--left {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 3rem;
+}
+.general__screen--left {
+  width: 798px;
+}
+.general__screen--left input {
+  height: 48px;
+  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid #bcbcbc;
+  margin: 7px 0;
+  font-size: 16px;
+  padding-left: 10px;
+}
+.first__two--inputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.first__two--inputs input {
+  width: 371px;
+}
+.first__two--inputs p {
+  color: #2e2e2e;
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+form .last--inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.last--inputs input {
+  width: 100%;
+}
+.last--inputs .about__me input {
+  height: 103px;
+  padding-bottom: 60px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.general__screen .next--btn {
+  position: absolute;
+  bottom: 100px;
+  right: 0px;
+  background-color: #6b40e3;
+  width: 151px;
+  height: 48px;
+  font-size: 16px;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  border-radius: 4px;
+  border: none;
+}
+.last--inputs .image__upload {
+  display: flex;
+  gap: 2rem;
+}
+.last--inputs .image__upload h3 {
+  font-size: 18px;
+}
+
+.last--inputs .image__upload button {
+  width: 107px;
+  height: 27px;
+  background-color: #0e80bf;
+  border: none;
+  color: #ffffff;
+  border-radius: 4px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+form p,
+form input {
+  opacity: 0.7;
+  font-family: HelveticaNeue;
+}
