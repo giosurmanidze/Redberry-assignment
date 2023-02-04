@@ -1,4 +1,4 @@
-.general__screen {
+.general__screen,.experience__screen {
   width: 100%;
   height: 100%;
   display: flex;
