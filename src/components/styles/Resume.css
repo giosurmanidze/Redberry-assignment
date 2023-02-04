@@ -1,0 +1,11 @@
+.resume__paper {
+    height: 1080px;
+    width: 822px;
+    background-color: #FFFFFF;
+    position: relative;
+}
+.cv-logo {
+    position: absolute;
+    bottom: 50px;
+    left: 78px;
+}
