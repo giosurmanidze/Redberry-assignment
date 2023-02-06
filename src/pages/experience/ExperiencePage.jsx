@@ -1,7 +1,7 @@
 import Resume from "../../components/Resume";
 import arrowIcon from "../../assets/images/Vector.png";
 import PageHeader from "../../components/PageHeader";
-import ExperienceForm from "../../components/ExperienceForm";
+import ExperienceForm from "./experienceForm/ExperienceForm";
 import { Link, useNavigate } from "react-router-dom";
 
 const ExperiencePage = () => {

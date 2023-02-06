@@ -1,4 +1,4 @@
-import "./styles/ExperienceForm.css";
+import "../style/styles.css";
 
 const ExperienceForm = () => {
   return (
