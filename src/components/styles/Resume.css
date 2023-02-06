@@ -1,11 +1,82 @@
 .resume__paper {
-    height: 1080px;
-    width: 822px;
-    background-color: #FFFFFF;
-    position: relative;
+  height: 1080px;
+  width: 822px;
+  background-color: #ffffff;
+  position: relative;
 }
 .cv-logo {
-    position: absolute;
-    bottom: 50px;
-    left: 78px;
+  position: absolute;
+  bottom: 50px;
+  left: 78px;
+}
+.person__image {
+  width: 246px;
+  height: 246px;
+  border-radius: 133px;
+  position: absolute;
+  width: 246px;
+  height: 246px;
+  left: 501px;
+  top: 48px;
+  object-fit: cover;
+}
+.header__infos {
+  position: absolute;
+  display: flex;
+  left: 80px;
+  top: 68px;
+  flex-direction: column;
+  gap: 2rem;
+}
+.header__infos h1 {
+  font-size: 34px;
+  color: #f93b1d;
+  width: 400px;
+}
+.header__infos div {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.email__detail,
+.phone__detail {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 18px;
+}
+
+.email__detail img,
+.phone__detail img {
+  width: 20px;
+  height: 20px;
+}
+
+.about__me--info h3 {
+  font-size: 18px;
+  color: #f93b1d;
+  font-weight: 700;
+  line-height: 22px;
+}
+.about__me--info {
+  width: 430px;
+  height: 130px;
+  position: relative;
+}
+.about__me--info p {
+  position: absolute;
+  max-width: 100%;
+  height: 100%;
+  overflow: auto;
+  top: 30px;
+  font-family: "Helvetica Neue";
+  word-wrap: break-word;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  font-family: HelveticaNeue;
+  text-transform: lowercase;
+  color: #000000;
 }
