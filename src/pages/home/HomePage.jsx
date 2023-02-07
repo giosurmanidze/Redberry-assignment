@@ -3,10 +3,9 @@ import { useNavigate } from "react-router-dom";
 import COMPANY_LOGO from "../../assets/images/LOGO-02 3.png";
 import AGENCY from "../../assets/images/LOGO-40 1.png";
 
-
 const HomePage = () => {
   const navigate = useNavigate();
-
+  
   return (
     <div className="landing__screen">
       <div className="landing__top">

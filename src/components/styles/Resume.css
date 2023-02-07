@@ -61,7 +61,7 @@
 }
 .about__me--info {
   width: 430px;
-  height: 130px;
+  height: 110px;
   position: relative;
 }
 .about__me--info p {
@@ -79,4 +79,22 @@
   font-family: HelveticaNeue;
   text-transform: lowercase;
   color: #000000;
+}
+
+.experience .experience__line {
+  position: absolute;
+  width: 662px;
+  height: 0px;
+  right: 80px;
+  top: 400px;
+  border: 1px solid #c8c8c8;
+}
+.experience h3 {
+  font-size: 18px;
+  position: absolute;
+  color: #f93b1d;
+  font-weight: 700;
+  left: 80px;
+  top: 415px;
+  font-size: 18px;
 }

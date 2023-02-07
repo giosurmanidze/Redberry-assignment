@@ -4,13 +4,13 @@ import arrowIcon from "../../assets/images/Vector.png";
 import PageHeader from "../../components/PageHeader";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { validForm } from "../../validation/validForm1";
+import { validatePersonal } from "../../validation/validatePersonal";
 import useSessionStorage from "../../hook/useSessionStorage";
 import InputField from "../../Layout/InputField";
 
 const GeneralPage = () => {
   const [checkFormEl, setCheckFormEl] = useState({});
-  const [imgUrl, setImgUrl] = useSessionStorage(null);
+  const [imgUrl, setImgUrl] = useSessionStorage("imgUrl", null);
   const [imgErrMsg, setImgErrMsg] = useSessionStorage(false);
   const [storeInputDetails, setStoreInputDetails] = useSessionStorage(
     "inputData",
@@ -34,19 +34,25 @@ const GeneralPage = () => {
 
   // EVERY TIMES DATA CHANGES VALIDATE FUNCTION  GET STARTED
   useEffect(() => {
-    setCheckFormEl(validForm(storeInputDetails));
-    validForm(storeInputDetails);
+    setCheckFormEl(validatePersonal(storeInputDetails));
+    validatePersonal(storeInputDetails);
+    if(!imgUrl) {
+      setImgErrMsg(true)
+    }else {
+      setImgErrMsg(false)
+    }
   }, [storeInputDetails]);
 
   useEffect(() => {
     setCheckFormEl({});
+    setImgErrMsg(false)
   }, []);
 
   // SUBMITED FORM AND CHECK IF DATA IS SUBMITED NAVOGATE NEXT PAGE
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setCheckFormEl(validForm(storeInputDetails));
+    setCheckFormEl(validatePersonal(storeInputDetails));
     if (
       checkFormEl.name &&
       checkFormEl.email &&
@@ -66,6 +72,9 @@ const GeneralPage = () => {
   // GET IMAGE URL
   const handleFileSelect = (event) => {
     setImgUrl(URL.createObjectURL(event.target.files[0]));
+    if(imgUrl) {
+      setImgErrMsg(false)
+    }
   };
 
   return (
@@ -77,7 +86,7 @@ const GeneralPage = () => {
           </Link>
         </div>
         <div className="general__screen--left">
-          <PageHeader title={"პირადი ინფო"} status={"1/3"} />
+          <PageHeader title={"პირადი ინფო"} status={1} />
           <form onSubmit={handleSubmit}>
             <div className="general__screen--inputs">
               <div className="first__two--inputs">
@@ -109,9 +118,12 @@ const GeneralPage = () => {
             </div>
             <div className="last--inputs">
               <div className="image__upload">
-                <h3 style={{ color: `${imgErrMsg ? "red" : ""}` }}>
-                  პირადი ფოტოს ატვირთვა
-                </h3>
+
+               <h3
+               
+               style={{color : imgErrMsg ? 'red' : ''  }}
+               >პირადი ფოტოს ატვირთვა</h3>
+
                 <input
                   id="file"
                   type="file"
