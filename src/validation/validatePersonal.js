@@ -1,4 +1,4 @@
-export const validForm = (values) => {
+export const validatePersonal = (values) => {
     const response = {};
     const REGEX_EMAIL = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@redberry.ge/;
     const REGEX_PHONE = /^\+995(79\d{7}|5\d{8})$/;
