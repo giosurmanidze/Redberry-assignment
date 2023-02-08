@@ -15,6 +15,9 @@ export const validatePersonal = (values) => {
   
     //phone chcking
     (!values?.phone_number || !REGEX_PHONE.test(values?.phone_number)) ? response.phone_number = "" : response.phone_number = true;
+    
+    //about me chcking (not required)
+    (!values.about_me ? response.about_me = "" : response.about_me = true ) 
   
     return response;
   };

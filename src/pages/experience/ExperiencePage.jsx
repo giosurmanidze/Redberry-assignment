@@ -1,15 +1,18 @@
 import Resume from "../../components/Resume";
 import arrowIcon from "../../assets/images/Vector.png";
 import PageHeader from "../../components/PageHeader";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useSessionStorage from "../../hook/useSessionStorage";
 import { validateExp } from "../../validation/validateExperience";
+import GREEN_ICON from "../../assets/images/done-green-circle.png";
+import RED_ICON from "../../assets/images/warning-red-circle.png";
 import "./style/styles.css";
+import InputField2 from "../../Layout/InputField2";
 
 const ExperiencePage = () => {
   const navigate = useNavigate();
-  const [errors, setErrors] = useSessionStorage({});
+  const [errors, setErrors] = useState({});
   const [experienceData, setExperienceData] = useSessionStorage(
     "experienceData",
     [
@@ -43,22 +46,8 @@ const ExperiencePage = () => {
     setExperienceData(newInputFields);
   };
 
-  // IF ARROW ON THE TOP LEFT IS CLICKED REFRESH ALL SAVED DATA
-  const backAndRefresh = () => {
-    sessionStorage.clear();
-  };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    validateExp(experienceData, setErrors);
-    if(!errors) {
-       navigate("/experience")
-    }
-  };
-
   // THIS PIECE OF CODE TAKES CARE OF ERROR HANDLING FOR EVERY CHANGE
   useEffect(() => {
-    setErrors(validateExp(experienceData, setErrors));
     validateExp(experienceData, setErrors);
   }, [experienceData]);
 
@@ -66,6 +55,17 @@ const ExperiencePage = () => {
     setErrors({});
   }, []);
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    validateExp(experienceData, setErrors);
+    const newErrors = validateExp(experienceData);
+    setErrors(newErrors);
+  };
+
+  // IF ARROW ON THE TOP LEFT IS CLICKED REFRESH ALL SAVED DATA
+  const backAndRefresh = () => {
+    sessionStorage.clear();
+  };
 
   return (
     <div className="experience__screen">
@@ -81,48 +81,30 @@ const ExperiencePage = () => {
             <div className="experience__form--container">
               <div className="postion--employer">
                 <div className="position">
-                  <h3
-                    style={{
-                      color: `${
-                        errors &&
-                        errors[index]?.position &&
-                        errors[index].position
-                          ? "red"
-                          : ""
-                      }`,
-                    }}
-                  >
-                    თანამდებობა
-                  </h3>
-                  <input
-                    type="text"
-                    placeholder="თანამდებობა"
+                  <InputField2
                     name="position"
+                    title="თანამდებობა"
+                    placeholder="თანამდებობა"
+                    errors={errors}
+                    errorEl={errors[index]?.position}
                     value={data.position}
-                    onChange={(e) => handleInputChange(e, index, "position")}
+                    handleInputChange={(e) =>
+                      handleInputChange(e, index, "position")
+                    }
                   />
                   <p>მინიმუმ 2 სიმბოლო</p>
                 </div>
                 <div className="employer">
-                  <h3
-                    style={{
-                      color: `${
-                        errors &&
-                        errors[index]?.employer &&
-                        errors[index].employer
-                          ? "red"
-                          : ""
-                      }`,
-                    }}
-                  >
-                    დამსაქმებელი
-                  </h3>
-                  <input
+                  <InputField2
                     name="employer"
+                    title="დამსაქმებელი"
                     placeholder="დამსაქმებელი"
+                    errors={errors}
+                    errorEl={errors[index]?.employer}
                     value={data.employer}
-                    type="text"
-                    onChange={(e) => handleInputChange(e, index, "employer")}
+                    handleInputChange={(e) =>
+                      handleInputChange(e, index, "employer")
+                    }
                   />
                   <p>მინიმუმ 2 სიმბოლო</p>
                 </div>
@@ -132,44 +114,76 @@ const ExperiencePage = () => {
                   <h3
                     style={{
                       color: `${
-                        errors &&
-                        errors[index]?.start_date &&
-                        errors[index].start_date
+                        errors && errors[index]?.start_date === "Invalid"
                           ? "red"
                           : ""
                       }`,
                     }}
                   >
+                    {errors && errors[index]?.start_date === "Correct" && (
+                      <img
+                        src={GREEN_ICON}
+                        alt="green"
+                        className="green_icon green__icon"
+                      />
+                    )}
+                    {errors && errors[index]?.start_date === "Invalid" && (
+                      <img src={RED_ICON} alt="red" className="red__icon" />
+                    )}
                     დაწყების რიცხვი
                   </h3>
                   <input
                     type="date"
                     name="start_date"
                     value={data.start_date}
-                    placeholder="MM / DD / YYY"
                     onChange={(e) => handleInputChange(e, index, "start_date")}
+                    style={{
+                      border: `${
+                        errors && errors[index]?.start_date === "Invalid"
+                          ? "1px solid red"
+                          : errors && errors[index]?.start_date === "Correct"
+                          ? "1px solid green"
+                          : ""
+                      }`,
+                    }}
                   />
                 </div>
                 <div className="due__date">
                   <h3
                     style={{
                       color: `${
-                        errors &&
-                        errors[index]?.end_date &&
-                        errors[index].end_date
+                        errors && errors[index]?.end_date === "Invalid"
                           ? "red"
                           : ""
                       }`,
                     }}
                   >
+                    {errors && errors[index]?.end_date === "Correct" && (
+                      <img
+                        src={GREEN_ICON}
+                        alt="green"
+                        className="green_icon green__icon"
+                      />
+                    )}
+                    {errors && errors[index]?.end_date === "Invalid" && (
+                      <img src={RED_ICON} alt="red" className="red__icon" />
+                    )}
                     დამთავრების რიცხვი
                   </h3>
                   <input
                     type="date"
                     name="due_date"
-                    placeholder=" MM / DD / YYYY"
                     value={data.due_date}
                     onChange={(e) => handleInputChange(e, index, "due_date")}
+                    style={{
+                      border: `${
+                        errors && errors[index]?.end_date === "Invalid"
+                          ? "1px solid red"
+                          : errors && errors[index]?.end_date === "Correct"
+                          ? "1px solid green"
+                          : ""
+                      }`,
+                    }}
                   />
                 </div>
               </div>
@@ -178,9 +192,7 @@ const ExperiencePage = () => {
                   <h3
                     style={{
                       color: `${
-                        errors && errors[index]?.desc && errors[index].desc
-                          ? "red"
-                          : ""
+                        errors && errors[index]?.desc === "Invalid" ? "red" : ""
                       }`,
                     }}
                   >
@@ -194,12 +206,28 @@ const ExperiencePage = () => {
                     onChange={(event) =>
                       handleInputChange(event, index, "description")
                     }
+                    style={{
+                      border: `${
+                        errors && errors[index]?.desc === "Invalid"
+                          ? "1px solid red"
+                          : errors && errors[index]?.desc === "Correct"
+                          ? "1px solid green"
+                          : ""
+                      }`,
+                    }}
                   />
                 </div>
               </div>
               <div className="devider--line"></div>
             </div>
           ))}
+          <button
+            type="button"
+            className="add__more"
+            onClick={handleAddExperience}
+          >
+            მეტი გამოცდილების დამატება
+          </button>
           <div className="btns">
             <button type="button" onClick={() => navigate("/general")}>
               უკან
@@ -209,18 +237,11 @@ const ExperiencePage = () => {
             </button>
           </div>
         </form>
-        <button
-          type="button"
-          className="add__more"
-          onClick={handleAddExperience}
-        >
-          მეტი გამოცდილების დამატება
-        </button>
       </div>
       <Resume
         data={JSON.parse(sessionStorage.getItem("inputData"))}
         imgUrl={JSON.parse(sessionStorage.getItem("imgUrl"))}
-        data2 = {JSON.parse(sessionStorage.getItem("experienceData"))}
+        data2={JSON.parse(sessionStorage.getItem("experienceData"))}
       />
     </div>
   );

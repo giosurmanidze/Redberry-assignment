@@ -36,16 +36,16 @@ const GeneralPage = () => {
   useEffect(() => {
     setCheckFormEl(validatePersonal(storeInputDetails));
     validatePersonal(storeInputDetails);
-    if(!imgUrl) {
-      setImgErrMsg(true)
-    }else {
-      setImgErrMsg(false)
+    if (!imgUrl) {
+      setImgErrMsg(true);
+    } else {
+      setImgErrMsg(false);
     }
   }, [storeInputDetails]);
 
   useEffect(() => {
     setCheckFormEl({});
-    setImgErrMsg(false)
+    setImgErrMsg(false);
   }, []);
 
   // SUBMITED FORM AND CHECK IF DATA IS SUBMITED NAVOGATE NEXT PAGE
@@ -64,17 +64,17 @@ const GeneralPage = () => {
     }
   };
 
-  // IF ARROW ON THE TOP LEFT IS CLICKED REFRESH ALL SAVED DATA
-  const backAndRefresh = () => {
-    sessionStorage.clear();
-  };
-
   // GET IMAGE URL
   const handleFileSelect = (event) => {
     setImgUrl(URL.createObjectURL(event.target.files[0]));
-    if(imgUrl) {
-      setImgErrMsg(false)
+    if (imgUrl) {
+      setImgErrMsg(false);
     }
+  };
+
+  // IF ARROW ON THE TOP LEFT IS CLICKED REFRESH ALL SAVED DATA
+  const backAndRefresh = () => {
+    sessionStorage.clear();
   };
 
   return (
@@ -96,7 +96,6 @@ const GeneralPage = () => {
                     title="სახელი"
                     value={storeInputDetails?.name}
                     handleChange={handleChange}
-                    data={storeInputDetails}
                     checkFormEl={checkFormEl.name}
                     placeholder="ანზორ"
                   />
@@ -108,7 +107,6 @@ const GeneralPage = () => {
                     title="გვარი"
                     value={storeInputDetails?.surname}
                     handleChange={handleChange}
-                    data={storeInputDetails}
                     checkFormEl={checkFormEl.surname}
                     placeholder="მუმლაძე"
                   />
@@ -118,11 +116,9 @@ const GeneralPage = () => {
             </div>
             <div className="last--inputs">
               <div className="image__upload">
-
-               <h3
-               
-               style={{color : imgErrMsg ? 'red' : ''  }}
-               >პირადი ფოტოს ატვირთვა</h3>
+                <h3 style={{ color: imgErrMsg ? "red" : "" }}>
+                  პირადი ფოტოს ატვირთვა
+                </h3>
 
                 <input
                   id="file"
@@ -140,6 +136,15 @@ const GeneralPage = () => {
                   placeholder="ზოგადი ინფო შენ შესახებ"
                   value={storeInputDetails?.about_me}
                   onChange={handleChange}
+                  style={{
+                    border: `${
+                      checkFormEl.about_me === ""
+                        ? "1px solid red"
+                        : checkFormEl.about_me
+                        ? "1px solid green"
+                        : ""
+                    }`,
+                  }}
                 />
               </div>
               <div className="email--input input__container">
@@ -148,7 +153,6 @@ const GeneralPage = () => {
                   title="ელ.ფოსტა"
                   value={storeInputDetails?.email}
                   handleChange={handleChange}
-                  data={storeInputDetails}
                   checkFormEl={checkFormEl.email}
                   placeholder="anzorr666@redberry.ge"
                 />
@@ -160,7 +164,6 @@ const GeneralPage = () => {
                   title="მობილურის ნომერი"
                   value={storeInputDetails?.phone_number}
                   handleChange={handleChange}
-                  data={storeInputDetails}
                   checkFormEl={checkFormEl.phone_number}
                   placeholder="+995 551 12 34 56"
                 />
