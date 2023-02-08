@@ -110,21 +110,20 @@
   font-family: "HelveticaNeue";
   font-weight: 400;
   border-radius: 4px;
-  overflow: hidden;
+  overflow: auto;
   background: #ffffff;
   border-radius: 4px;
   flex: none;
   order: 1;
   align-self: stretch;
+
   flex-grow: 1;
 }
-textarea {
-  box-sizing: border-box;
-  background: #FFFFFF;
-  border: 1px solid #BCBCBC;
-  border-radius: 4px;
-  flex: none;
-  order: 1;
-  align-self: stretch;
-  flex-grow: 1;
+input {
+  font-weight: 500;
+  font-size: 16px;
+  color: #1A1A1A;
+}
+.info .head {
+  padding-top: 10px;
 }

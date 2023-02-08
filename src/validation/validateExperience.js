@@ -1,15 +1,10 @@
 export const validateExp = (experienceData, setErrors) => {
-  const REGEX_NAME = /^[ა-ჰ]*$/;
   const newErrors = {};
   experienceData.forEach((inputField, index) => {
     const validCheckPos =
-      !inputField?.position ||
-      !REGEX_NAME.test(inputField?.position) ||
-      inputField?.position.length < 2;
+      !inputField?.position || inputField?.position.length < 2;
     const validCheckEmp =
-      !inputField?.employer ||
-      !REGEX_NAME.test(inputField?.employer) ||
-      inputField?.employer.length < 2;
+      !inputField?.employer || inputField?.employer.length < 2;
     const validCheckStart_date = !inputField?.start_date;
     const validCheckEnd_date = !inputField?.due_date;
     const validCheckDesc = !inputField?.description;
