@@ -60,6 +60,9 @@ const ExperiencePage = () => {
     validateExp(experienceData, setErrors);
     const newErrors = validateExp(experienceData);
     setErrors(newErrors);
+
+
+    /// SUBMIT AND MOVE NEXT PAGE 
   };
 
   // IF ARROW ON THE TOP LEFT IS CLICKED REFRESH ALL SAVED DATA
@@ -199,6 +202,7 @@ const ExperiencePage = () => {
                     აღწერა
                   </h3>
                   <textarea
+                  className="cv__textArea"
                     type="text"
                     placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
                     name="description"
@@ -241,7 +245,7 @@ const ExperiencePage = () => {
       <Resume
         data={JSON.parse(sessionStorage.getItem("inputData"))}
         imgUrl={JSON.parse(sessionStorage.getItem("imgUrl"))}
-        data2={JSON.parse(sessionStorage.getItem("experienceData"))}
+        expData={JSON.parse(sessionStorage.getItem("experienceData"))}
       />
     </div>
   );

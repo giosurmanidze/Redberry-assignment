@@ -175,7 +175,9 @@ const GeneralPage = () => {
             </div>
           </form>
         </div>
-        <Resume data={storeInputDetails} imgUrl={imgUrl} />
+        <Resume data={storeInputDetails} imgUrl={imgUrl} 
+        expData={JSON.parse(sessionStorage.getItem('experienceData'))}
+        />
       </div>
     </>
   );
