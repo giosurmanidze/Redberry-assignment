@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  position: relative;
 }
 
 .devider--line {
@@ -20,8 +21,20 @@
   flex-direction: column;
   gap: 2rem;
 }
+.green_icon {
+ position: absolute;
+ top: 40px;
+ right: 8px;
+  z-index: 44;
+}
+.red__icon {
+  position: absolute;
+  top: 40px;
+  right: -35px;
+}
 .postion--employer input {
   width: 100%;
+  position: relative;
 }
 
 .start__due--date {
@@ -36,6 +49,12 @@
 
 .desc div input {
   padding-bottom: 60px;
+}
+.employer, .position,.start__date,.due__date {
+  position: relative;
+}
+.green__icon {
+ right: -25px;
 }
 
 .add__more {
@@ -93,6 +112,16 @@
   border-radius: 4px;
   overflow: hidden;
   background: #ffffff;
+  border-radius: 4px;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 1;
+}
+textarea {
+  box-sizing: border-box;
+  background: #FFFFFF;
+  border: 1px solid #BCBCBC;
   border-radius: 4px;
   flex: none;
   order: 1;

@@ -1,7 +1,14 @@
 import GREEN_ICON from "../assets/images/done-green-circle.png";
 import RED_ICON from "../assets/images/warning-red-circle.png";
 
-const InputField = ({ checkFormEl,placeholder, name, value,title, handleChange }) => {
+const InputField = ({
+  checkFormEl,
+  placeholder,
+  name,
+  value,
+  title,
+  handleChange,
+}) => {
   return (
     <>
       <h3
@@ -18,7 +25,7 @@ const InputField = ({ checkFormEl,placeholder, name, value,title, handleChange }
         value={value}
         onChange={handleChange}
         style={{
-          outline: `${checkFormEl === "" ? "1px solid red" : ""}`,
+          border: `${checkFormEl === "" ? "1px solid red" : checkFormEl ? "1px solid green" : ""}`,
         }}
       />
       {checkFormEl && (
@@ -27,7 +34,6 @@ const InputField = ({ checkFormEl,placeholder, name, value,title, handleChange }
       {checkFormEl === "" && (
         <img src={RED_ICON} alt="red" className="red__icon" />
       )}
-      
     </>
   );
 };
