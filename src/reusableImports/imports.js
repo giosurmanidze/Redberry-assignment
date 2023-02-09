@@ -4,8 +4,6 @@ import GREEN_ICON from "../assets/images/done-green-circle.png";
 import RED_ICON from "../assets/images/warning-red-circle.png";
 import InputField2 from "../Layout/InputField2";
 import SelectMenu from "../Layout/SelectMenu";
-import validateEdu from "../validation/validateEdu";
-import validateExp from "../validation/validateExperience";
 import validatePersonal from "../validation/validatePersonal";
 import InputField from "../Layout/InputField";
 import arrowIcon from '../assets/images/Vector.png'
@@ -24,8 +22,6 @@ export {
   RED_ICON,
   InputField2,
   SelectMenu,
-  validateEdu,
-  validateExp,
   GeneralPage,
   FinalPage,
   ExperiencePage,

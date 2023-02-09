@@ -9,8 +9,8 @@ import {
   RED_ICON,
   InputField2,
   SelectMenu,
-  validateEdu,
 } from "../../reusableImports/imports";
+import validateData from "../../validation/Exp&Edu&validation";
 
 const EducationPage = () => {
   const navigate = useNavigate();
@@ -61,7 +61,7 @@ const EducationPage = () => {
 
   // THIS PIECE OF CODE TAKES CARE OF ERROR HANDLING FOR EVERY CHANGE
   useEffect(() => {
-    const [newErrors] = validateEdu(educationData);
+    const [newErrors] = validateData(educationData, "edu");
     setErrors(newErrors);
   }, [educationData]);
 
@@ -71,7 +71,7 @@ const EducationPage = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const [newErrors, isSubmited] = validateEdu(educationData);
+    const [newErrors, isSubmited] = validateData(educationData, "edu");
     setErrors(newErrors);
     const ErrorLen = Object.keys(isSubmited).length;
 
