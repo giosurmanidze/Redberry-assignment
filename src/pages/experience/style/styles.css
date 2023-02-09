@@ -86,11 +86,10 @@ select {
   justify-content: space-between;
   align-items: center;
 }
-.btns button {
+.btns button{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
   width: 151px;
   height: 48px;
   background: #6b40e3;
@@ -103,7 +102,10 @@ select {
   line-height: 20px;
   letter-spacing: 0.08em;
   color: #ffffff;
+  bottom: 100px;
+  position: absolute;
 }
+
 .desc textarea {
   height: 103px;
   width: 100%;
@@ -119,17 +121,12 @@ select {
   overflow: auto;
   background: #ffffff;
   border-radius: 4px;
-  flex: none;
-  order: 1;
-  align-self: stretch;
 
-  flex-grow: 1;
 }
 
 .desc textarea::-webkit-scrollbar {
   width: 0;
 }
-
 input {
   font-weight: 500;
   font-size: 16px;

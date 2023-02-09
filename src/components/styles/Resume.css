@@ -228,3 +228,9 @@
 .education__container h3 {
   color: #000000;
 }
+
+.header__details {
+  display: flex;
+  gap: 2rem;
+  
+}

@@ -1,33 +1,17 @@
 .resume__screen {
-    width: 100%;
-    height: 1080px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 1080px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.resume__screen .arrow__icon {
-    width: 40px;
-    height: 40px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 45px;
-    margin-left: 48px;
-  }
-.resume__screen .arrow__icon img {
-    width: 9.21px;
-    height: 16px;
-  }
 
-  .cv__info {
+.cv__info {
+  left: calc(50% - 822px / 2);
 
-left: calc(50% - 822px/2);
-
-background: #FFFFFF;
-border: 0.8px solid #000000;
-top: 54px;
-position: absolute;
-  }
+  background: #ffffff;
+  border: 0.8px solid #000000;
+  top: 54px;
+  position: absolute;
+}

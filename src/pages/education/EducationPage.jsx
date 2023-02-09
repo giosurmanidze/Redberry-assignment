@@ -80,17 +80,9 @@ const EducationPage = () => {
     }
   };
 
-  // IF ARROW ON THE TOP LEFT IS CLICKED REFRESH ALL SAVED DATA
-  const backAndRefresh = () => {
-    sessionStorage.clear();
-  };
+
   return (
     <div className="experience__screen">
-      <div className="arrow__icon">
-        <Link to="/" onClick={backAndRefresh}>
-          <img src={arrowIcon} alt="arrow" />
-        </Link>
-      </div>
       <div className="general__screen--left">
         <PageHeader title={"ᲒᲐᲜᲐᲗᲚᲔᲑᲐ"} status={3} />
         <form onSubmit={onSubmit}>
@@ -212,7 +204,7 @@ const EducationPage = () => {
             <button type="button" onClick={() => navigate("/experience")}>
               უკან
             </button>
-            <button type="submit" onClick={onSubmit}>
+            <button type="submit" className="submit__btn" onClick={onSubmit}>
               დამახსოვრება
             </button>
           </div>
