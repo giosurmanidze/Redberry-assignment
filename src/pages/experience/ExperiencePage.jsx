@@ -7,9 +7,10 @@ import {
   PageHeader,
   GREEN_ICON,
   RED_ICON,
-  validateExp,
   InputField2,
 } from "../../reusableImports/imports";
+import validateData from "../../validation/Exp&Edu&validation";
+
 
 const ExperiencePage = () => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const ExperiencePage = () => {
 
   // THIS PIECE OF CODE TAKES CARE OF ERROR HANDLING FOR EVERY CHANGE
   useEffect(() => {
-    const [newErrors] = validateExp(experienceData);
+    const [newErrors] = validateData(experienceData,"exp");
     setErrors(newErrors);
   }, [experienceData]);
 
@@ -60,7 +61,7 @@ const ExperiencePage = () => {
   // IF THE INPUTS DATA IS VALID AND INFORMATION IS POSTED THEN SHOW THIS CV
   const onSubmit = (e) => {
     e.preventDefault();
-    const [newErrors, isSubmited] = validateExp(experienceData);
+    const [newErrors, isSubmited] = validateData(experienceData,"exp");
     setErrors(newErrors);
     const ErrorLen = Object.keys(isSubmited).length;
     return !ErrorLen && navigate("/edu");
