@@ -4,13 +4,13 @@ import PageHeader from "../../components/PageHeader";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useSessionStorage from "../../hook/useSessionStorage";
-import { validateExp } from "../../validation/validateExperience";
 import GREEN_ICON from "../../assets/images/done-green-circle.png";
 import RED_ICON from "../../assets/images/warning-red-circle.png";
 import InputField2 from "../../Layout/InputField2";
 import axios from "axios";
 import SelectMenu from "../../Layout/SelectMenu";
 import { validateEdu } from "../../validation/validateEdu";
+import DELETE_ICON from "../../assets/images/delete--icon.png";
 
 const EducationPage = () => {
   const navigate = useNavigate();
@@ -75,8 +75,9 @@ const EducationPage = () => {
     setErrors(newErrors);
     const ErrorLen = Object.keys(isSubmited).length;
 
-    console.log(isSubmited);
-    return !ErrorLen && navigate("/final-page");
+    if (!ErrorLen) {
+      navigate("/final-page");
+    }
   };
 
   // IF ARROW ON THE TOP LEFT IS CLICKED REFRESH ALL SAVED DATA
@@ -125,7 +126,7 @@ const EducationPage = () => {
                 </div>
 
                 <div className="due__date">
-                <h3
+                  <h3
                     style={{
                       color: `${
                         errors && errors[index]?.end_date === "Invalid"
@@ -212,7 +213,7 @@ const EducationPage = () => {
               უკან
             </button>
             <button type="submit" onClick={onSubmit}>
-              შემდეგი
+              დამახსოვრება
             </button>
           </div>
         </form>

@@ -56,12 +56,16 @@ const ExperiencePage = () => {
     setErrors({});
   }, []);
 
+
+
+  // IF THE INPUTS DATA IS VALID AND INFORMATION IS POSTED THEN SHOW THIS CV
   const onSubmit = (e) => {
     e.preventDefault();
     const [newErrors, isSubmited] = validateExp(experienceData);
     setErrors(newErrors);
     const ErrorLen = Object.keys(isSubmited).length;
     return !ErrorLen && navigate("/edu");
+
   };
 
   // IF ARROW ON THE TOP LEFT IS CLICKED REFRESH ALL SAVED DATA

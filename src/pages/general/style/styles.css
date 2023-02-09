@@ -113,6 +113,7 @@ form .last--inputs {
   font-family: "HelveticaNeue";
   font-weight: 400;
 }
+
 .general__screen .next--btn {
   position: absolute;
   bottom: 100px;
@@ -183,3 +184,9 @@ form input {
   top: 40px;
   right: -35px;
 }
+
+.about__me textarea::-webkit-scrollbar {
+  width: 0;
+
+}
+
