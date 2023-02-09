@@ -71,15 +71,11 @@ const GeneralPage = () => {
       setImgErrMsg(false);
     }
   };
-
-
   
     // IF ARROW ON THE TOP LEFT IS CLICKED REFRESH ALL SAVED DATA
     const backAndRefresh = () => {
       sessionStorage.clear();
     };
-  
-
   return (
     <>
       <div className="general__screen">
@@ -173,6 +169,7 @@ const GeneralPage = () => {
           data={storeInputDetails}
           imgUrl={imgUrl}
           expData={JSON.parse(sessionStorage.getItem("experienceData"))}
+          eduData={JSON.parse(sessionStorage.getItem("educationData"))}
         />
       </div>
     </>

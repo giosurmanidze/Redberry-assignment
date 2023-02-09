@@ -8,11 +8,8 @@
     font-family: HelveticaNeue;
     src: url("/src/assets/fonts/HelveticaNeue.ttc");
   }
-  
-  
-  body {
-    width: 1920px;
-    height: 1080px;
-    font-family: HelveticaNeue;
-  }
-  
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
