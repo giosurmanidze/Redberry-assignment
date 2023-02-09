@@ -1,18 +1,11 @@
-export const validateExp = (experienceData) => {
+export const validateEdu = (experienceData) => {
   const newErrors = {};
   const isSubmited = {};
   experienceData?.forEach((inputField, index) => {
-    const errorKeys = [
-      "position",
-      "employer",
-      "start_date",
-      "end_date",
-      "desc",
-    ];
+    const errorKeys = ["institute", "degree", "end_date", "description"];
     const validations = [
-      !inputField?.position || inputField?.position.length < 2,
-      !inputField?.employer || inputField?.employer.length < 2,
-      !inputField?.start_date,
+      !inputField?.institute || inputField?.institute.length < 2,
+      !inputField?.degree,
       !inputField?.due_date,
       !inputField?.description,
     ];

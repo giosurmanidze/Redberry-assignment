@@ -72,10 +72,13 @@ const GeneralPage = () => {
     }
   };
 
-  // IF ARROW ON THE TOP LEFT IS CLICKED REFRESH ALL SAVED DATA
-  const backAndRefresh = () => {
-    sessionStorage.clear();
-  };
+
+  
+    // IF ARROW ON THE TOP LEFT IS CLICKED REFRESH ALL SAVED DATA
+    const backAndRefresh = () => {
+      sessionStorage.clear();
+    };
+  
 
   return (
     <>
@@ -136,15 +139,6 @@ const GeneralPage = () => {
                   placeholder="ზოგადი ინფო შენ შესახებ"
                   value={storeInputDetails?.about_me}
                   onChange={handleChange}
-                  style={{
-                    border: `${
-                      checkFormEl.about_me === ""
-                        ? "1px solid red"
-                        : checkFormEl.about_me
-                        ? "1px solid green"
-                        : ""
-                    }`,
-                  }}
                 />
               </div>
               <div className="email--input input__container">
@@ -175,8 +169,10 @@ const GeneralPage = () => {
             </div>
           </form>
         </div>
-        <Resume data={storeInputDetails} imgUrl={imgUrl} 
-        expData={JSON.parse(sessionStorage.getItem('experienceData'))}
+        <Resume
+          data={storeInputDetails}
+          imgUrl={imgUrl}
+          expData={JSON.parse(sessionStorage.getItem("experienceData"))}
         />
       </div>
     </>
