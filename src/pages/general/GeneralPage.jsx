@@ -71,19 +71,14 @@ const GeneralPage = () => {
       setImgErrMsg(false);
     }
   };
-  
-    // IF ARROW ON THE TOP LEFT IS CLICKED REFRESH ALL SAVED DATA
-    const backAndRefresh = () => {
-      sessionStorage.clear();
-    };
+
+  // IF ARROW ON THE TOP LEFT IS CLICKED REFRESH ALL SAVED DATA
+  const backAndRefresh = () => {
+    sessionStorage.clear();
+  };
   return (
     <>
       <div className="general__screen">
-        <div className="arrow__icon">
-          <Link to="/" onClick={backAndRefresh}>
-            <img src={arrowIcon} alt="arrow" />
-          </Link>
-        </div>
         <div className="general__screen--left">
           <PageHeader title={"პირადი ინფო"} status={1} />
           <form onSubmit={handleSubmit}>
