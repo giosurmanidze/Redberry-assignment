@@ -1,4 +1,4 @@
-export const validateExp = (experienceData) => {
+const validateExp = (experienceData) => {
   const newErrors = {};
   const isSubmited = {};
   experienceData?.forEach((inputField, index) => {
@@ -29,3 +29,6 @@ export const validateExp = (experienceData) => {
 
   return [newErrors, isSubmited];
 };
+
+
+export default validateExp

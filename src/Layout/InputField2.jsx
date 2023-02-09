@@ -1,5 +1,4 @@
-import GREEN_ICON from "../assets/images/done-green-circle.png";
-import RED_ICON from "../assets/images/warning-red-circle.png";
+import { GREEN_ICON, RED_ICON } from "../reusableImports/imports";
 
 const InputField2 = ({
   type,
@@ -27,7 +26,7 @@ const InputField2 = ({
         value={value}
         onChange={handleInputChange}
         style={{
-            border: `${
+          border: `${
             errors && errorEl === "Invalid"
               ? "1px solid red"
               : errors && errorEl === "Correct"

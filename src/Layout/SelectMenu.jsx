@@ -1,17 +1,20 @@
-import GREEN_ICON from '../assets/images/done-green-circle.png'
-import RED_ICON from '../assets/images/warning-red-circle.png'
+import { GREEN_ICON, RED_ICON } from "../reusableImports/imports";
 
 const SelectMenu = ({ value, errors, errorEl, handleInputChange, degrees }) => {
   return (
     <>
-      <h3 
-         style={{
+      <h3
+        style={{
           color: `${errors && errorEl === "Invalid" ? "red" : ""}`,
         }}
-      >ხარისხი</h3>
-      <select value={value} onChange={handleInputChange}
-           style={{
-            border: `${
+      >
+        ხარისხი
+      </h3>
+      <select
+        value={value}
+        onChange={handleInputChange}
+        style={{
+          border: `${
             errors && errorEl === "Invalid"
               ? "1px solid red"
               : errors && errorEl === "Correct"

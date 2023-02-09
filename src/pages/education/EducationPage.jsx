@@ -1,16 +1,16 @@
-import Resume from "../../components/Resume";
-import arrowIcon from "../../assets/images/Vector.png";
-import PageHeader from "../../components/PageHeader";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useSessionStorage from "../../hook/useSessionStorage";
-import GREEN_ICON from "../../assets/images/done-green-circle.png";
-import RED_ICON from "../../assets/images/warning-red-circle.png";
-import InputField2 from "../../Layout/InputField2";
 import axios from "axios";
-import SelectMenu from "../../Layout/SelectMenu";
-import { validateEdu } from "../../validation/validateEdu";
-import DELETE_ICON from "../../assets/images/delete--icon.png";
+import {
+  Resume,
+  PageHeader,
+  GREEN_ICON,
+  RED_ICON,
+  InputField2,
+  SelectMenu,
+  validateEdu,
+} from "../../reusableImports/imports";
 
 const EducationPage = () => {
   const navigate = useNavigate();
@@ -79,7 +79,6 @@ const EducationPage = () => {
       navigate("/final-page");
     }
   };
-
 
   return (
     <div className="experience__screen">

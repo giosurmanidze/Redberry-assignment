@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import arrowIcon from "../assets/images/Vector.png";
+import { arrowIcon } from "../reusableImports/imports";
 
 const PageHeader = ({ title, status }) => {
   // IF ARROW ON THE TOP LEFT IS CLICKED REFRESH ALL SAVED DATA
@@ -14,7 +14,6 @@ const PageHeader = ({ title, status }) => {
         </Link>
       </div>
       <div className="general__screen--header">
-        
         <div className="top">
           <h3>{title}</h3>
           <p className="general__screen--status">{status}/3</p>

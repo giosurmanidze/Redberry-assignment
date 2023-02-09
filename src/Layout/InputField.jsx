@@ -1,5 +1,4 @@
-import GREEN_ICON from "../assets/images/done-green-circle.png";
-import RED_ICON from "../assets/images/warning-red-circle.png";
+import { GREEN_ICON, RED_ICON } from "../reusableImports/imports";
 
 const InputField = ({
   checkFormEl,
@@ -25,7 +24,13 @@ const InputField = ({
         value={value}
         onChange={handleChange}
         style={{
-          border: `${checkFormEl === "" ? "1px solid red" : checkFormEl ? "1px solid green" : ""}`,
+          border: `${
+            checkFormEl === ""
+              ? "1px solid red"
+              : checkFormEl
+              ? "1px solid green"
+              : ""
+          }`,
         }}
       />
       {checkFormEl && (
