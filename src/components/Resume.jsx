@@ -3,7 +3,7 @@ import LOGO from "../assets/images/LOGO-12 1.png";
 import EMAIL_ICON from "../assets/images/email-icon.png";
 import PHONE_ICON from "../assets/images/phone-icon.png";
 
-const Resume = ({ data, imgUrl, expData }) => {
+const Resume = ({ data, imgUrl, expData, eduData }) => {
   return (
     <div className="resume__paper">
       <div className="inner__div">
@@ -33,22 +33,48 @@ const Resume = ({ data, imgUrl, expData }) => {
           {expData && <div className="experience__line"></div>}
 
           <div className="info">
-            {expData && <h2 className="head">გამოცდილება</h2>}
+            {expData && <h3 className="head ">გამოცდილება</h3>}
 
             {expData?.map((info, i) => {
               return (
                 <div key={i} className="experience__container">
                   <div className="pos__date">
-                    <h3>{`${info.position} ${info.position && ","}  ${info.employer}`}</h3>
-                    <h2>{`${info.start_date}${info.start_date && "-"} ${info.due_date}`}</h2>
+                    <h3>{`${info.position}${info.position && ","}  ${
+                      info.employer
+                    }`}</h3>
+                    <h2>{`${info.start_date}${info.start_date && " -"} ${
+                      info.due_date
+                    }`}</h2>
                   </div>
                   <p>{info.description}</p>
                 </div>
               );
             })}
-            <div></div>
           </div>
         </div>
+        <div className="experience">
+          {eduData && <div className="experience__line"></div>}
+
+          <div className="info">
+            {eduData && <h2 className="head">განათლება</h2>}
+
+            {eduData?.map((info, i) => {
+              return (
+                <div key={i} className="education__container">
+                  <div className="pos__date">
+                    <h3>{`${info.institute}${info.institute && ","}  ${
+                      info.degree
+                    }`}</h3>
+                    <h2>{`${info.due_date}`}</h2>
+                  </div>
+                  <p>{info.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* // RESUME EDUCATION DESIGN HERE */}
       </div>
       <img src={LOGO} alt="logo" className="cv-logo" />
     </div>

@@ -48,7 +48,8 @@ const ExperiencePage = () => {
 
   // THIS PIECE OF CODE TAKES CARE OF ERROR HANDLING FOR EVERY CHANGE
   useEffect(() => {
-    validateExp(experienceData, setErrors);
+    const [newErrors] = validateExp(experienceData);
+    setErrors(newErrors);
   }, [experienceData]);
 
   useEffect(() => {
@@ -57,12 +58,10 @@ const ExperiencePage = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    validateExp(experienceData, setErrors);
-    const newErrors = validateExp(experienceData);
+    const [newErrors, isSubmited] = validateExp(experienceData);
     setErrors(newErrors);
-
-
-    /// SUBMIT AND MOVE NEXT PAGE 
+    const ErrorLen = Object.keys(isSubmited).length;
+    return !ErrorLen && navigate("/edu");
   };
 
   // IF ARROW ON THE TOP LEFT IS CLICKED REFRESH ALL SAVED DATA
@@ -81,7 +80,7 @@ const ExperiencePage = () => {
         <PageHeader title={"ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ"} status={2} />
         <form onSubmit={onSubmit}>
           {experienceData.map((data, index) => (
-            <div className="experience__form--container">
+            <div key={index} className="experience__form--container">
               <div className="postion--employer">
                 <div className="position">
                   <InputField2
@@ -89,7 +88,7 @@ const ExperiencePage = () => {
                     title="თანამდებობა"
                     placeholder="თანამდებობა"
                     errors={errors}
-                    errorEl={errors[index]?.position}
+                    errorEl={errors && errors[index]?.position}
                     value={data.position}
                     handleInputChange={(e) =>
                       handleInputChange(e, index, "position")
@@ -103,7 +102,7 @@ const ExperiencePage = () => {
                     title="დამსაქმებელი"
                     placeholder="დამსაქმებელი"
                     errors={errors}
-                    errorEl={errors[index]?.employer}
+                    errorEl={errors && errors[index]?.employer}
                     value={data.employer}
                     handleInputChange={(e) =>
                       handleInputChange(e, index, "employer")
@@ -202,7 +201,7 @@ const ExperiencePage = () => {
                     აღწერა
                   </h3>
                   <textarea
-                  className="cv__textArea"
+                    className="cv__textArea"
                     type="text"
                     placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
                     name="description"
