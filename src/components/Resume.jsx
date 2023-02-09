@@ -6,6 +6,7 @@ import DELETE_ICON from "../assets/images/delete--icon.png";
 import { Link, useHref } from "react-router-dom";
 import { useState } from "react";
 import { arrowIcon } from "../reusableImports/imports";
+import InfoCard from "./InfoCard";
 
 const Resume = ({ data, imgUrl, expData, eduData }) => {
   const [isShowPop, setIsShowPop] = useState(true);
@@ -48,23 +49,18 @@ const Resume = ({ data, imgUrl, expData, eduData }) => {
           </div>
           <div className="experience">
             {expData && <div className="experience__line"></div>}
-
             <div className="info">
               {expData && <h3 className="head ">გამოცდილება</h3>}
-
               {expData?.map((info, i) => {
                 return (
-                  <div key={i} className="experience__container">
-                    <div className="pos__date">
-                      <h3>{`${info.position}${info.position && ","}  ${
-                        info.employer
-                      }`}</h3>
-                      <h2>{`${info.start_date}${info.start_date && " -"} ${
-                        info.due_date
-                      }`}</h2>
-                    </div>
-                    <p>{info.description}</p>
-                  </div>
+                  <InfoCard
+                    key={i}
+                    info_1={info.position}
+                    info_2={info.employer}
+                    info_3={info.start_date}
+                    info_4={info.due_date}
+                    info_5={info.description}
+                  />
                 );
               })}
             </div>
@@ -77,15 +73,14 @@ const Resume = ({ data, imgUrl, expData, eduData }) => {
 
               {eduData?.map((info, i) => {
                 return (
-                  <div key={i} className="education__container">
-                    <div className="pos__date">
-                      <h3>{`${info.institute}${info.institute && ","}  ${
-                        info.degree
-                      }`}</h3>
-                      <h2>{`${info.due_date}`}</h2>
-                    </div>
-                    <p>{info.description}</p>
-                  </div>
+                  <InfoCard
+                    key={i}
+                    info_1={info.institute}
+                    info_2={info.degree}
+                    info_3=""
+                    info_4={info.due_date}
+                    info_5={info.description}
+                  />
                 );
               })}
             </div>
