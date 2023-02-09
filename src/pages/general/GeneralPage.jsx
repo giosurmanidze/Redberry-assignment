@@ -1,12 +1,13 @@
 import "./style/styles.css";
-import Resume from "../../components/Resume";
-import arrowIcon from "../../assets/images/Vector.png";
-import PageHeader from "../../components/PageHeader";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { validatePersonal } from "../../validation/validatePersonal";
 import useSessionStorage from "../../hook/useSessionStorage";
-import InputField from "../../Layout/InputField";
+import {
+  Resume,
+  PageHeader,
+  InputField,
+  validatePersonal,
+} from "../../reusableImports/imports";
 
 const GeneralPage = () => {
   const [checkFormEl, setCheckFormEl] = useState({});

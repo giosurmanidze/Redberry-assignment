@@ -1,9 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/home/HomePage.jsx";
-import GeneralPage from "./pages/general/GeneralPage.jsx";
-import ExperiencePage from "./pages/experience/ExperiencePage.jsx";
-import EducationPage from "./pages/education/EducationPage.jsx";
-import FinalPage from "./pages/final/FinalPage.jsx";
+import {
+  HomePage,
+  GeneralPage,
+  ExperiencePage,
+  EducationPage,
+  FinalPage,
+} from "./reusableImports/imports";
 
 const App = () => {
   return (

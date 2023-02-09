@@ -1,14 +1,15 @@
-import Resume from "../../components/Resume";
-import arrowIcon from "../../assets/images/Vector.png";
-import PageHeader from "../../components/PageHeader";
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import useSessionStorage from "../../hook/useSessionStorage";
-import { validateExp } from "../../validation/validateExperience";
-import GREEN_ICON from "../../assets/images/done-green-circle.png";
-import RED_ICON from "../../assets/images/warning-red-circle.png";
 import "./style/styles.css";
-import InputField2 from "../../Layout/InputField2";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useSessionStorage from "../../hook/useSessionStorage";
+import {
+  Resume,
+  PageHeader,
+  GREEN_ICON,
+  RED_ICON,
+  validateExp,
+  InputField2,
+} from "../../reusableImports/imports";
 
 const ExperiencePage = () => {
   const navigate = useNavigate();
@@ -56,8 +57,6 @@ const ExperiencePage = () => {
     setErrors({});
   }, []);
 
-
-
   // IF THE INPUTS DATA IS VALID AND INFORMATION IS POSTED THEN SHOW THIS CV
   const onSubmit = (e) => {
     e.preventDefault();
@@ -65,7 +64,6 @@ const ExperiencePage = () => {
     setErrors(newErrors);
     const ErrorLen = Object.keys(isSubmited).length;
     return !ErrorLen && navigate("/edu");
-
   };
 
   return (

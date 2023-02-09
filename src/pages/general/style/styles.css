@@ -1,10 +1,10 @@
-.general__screen,.experience__screen {
+.general__screen,
+.experience__screen {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: space-between;
   background-color: #f9f9f9;
-
 }
 .general__screen--left .general__screen--header {
   font-size: 24px;
@@ -65,11 +65,13 @@ form .last--inputs h3 {
   gap: 3.5rem;
   width: 100%;
 }
-.general__screen--inputs,.first__two--inputs {
+.general__screen--inputs,
+.first__two--inputs {
   width: 100%;
 }
 
-.general__screen--left input, select {
+.general__screen--left input,
+select {
   height: 48px;
   border-radius: 4px;
   background: #ffffff;
@@ -118,10 +120,11 @@ form .last--inputs {
   font-weight: 400;
 }
 
-.general__screen .next--btn, .submit__btn {
+.general__screen .next--btn,
+.submit__btn {
   position: absolute;
   bottom: 100px;
-  left:797px;
+  left: 797px;
   background-color: #6b40e3;
   width: 151px;
   height: 48px;
@@ -134,12 +137,11 @@ form .last--inputs {
 .last--inputs .image__upload {
   display: flex;
   gap: 2rem;
+  align-items: center;
 }
 .last--inputs .image__upload h3 {
   font-size: 18px;
 }
-
-
 
 form {
   display: flex;
@@ -165,9 +167,9 @@ form input {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding:5px 5px;
   background-color: #0e80bf;
   border: none;
+  padding-bottom: 3px;
   color: #ffffff;
   border-radius: 4px;
 }
@@ -180,9 +182,9 @@ form input {
   position: relative;
 }
 .green_icon {
- position: absolute;
- top: 40px;
- right: 8px;
+  position: absolute;
+  top: 40px;
+  right: 8px;
 }
 .red__icon {
   position: absolute;
@@ -192,6 +194,4 @@ form input {
 
 .about__me textarea::-webkit-scrollbar {
   width: 0;
-
 }
-
