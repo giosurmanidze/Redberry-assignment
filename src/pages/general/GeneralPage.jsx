@@ -1,82 +1,55 @@
 import "./style/styles.css";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import useSessionStorage from "../../hook/useSessionStorage";
+import { useContext, useEffect, useState } from "react";
 import {
   Resume,
   PageHeader,
   InputField,
   validatePersonal,
 } from "../../reusableImports/imports";
+import { StoreContext } from "../../context/appContext";
 
 const GeneralPage = () => {
+  const { handleChange, store, handleFileSelect } = useContext(StoreContext);
   const [checkFormEl, setCheckFormEl] = useState({});
-  const [imgUrl, setImgUrl] = useSessionStorage("imgUrl", null);
-  const [imgErrMsg, setImgErrMsg] = useSessionStorage(false);
-  const [storeInputDetails, setStoreInputDetails] = useSessionStorage(
-    "inputData",
-    {
-      name: "",
-      email: "",
-      surname: "",
-      about_me: "",
-      phone_number: "",
-    }
-  );
+  const [imgErrMsg, setImgErrMsg] = useState("hide");
 
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setStoreInputDetails({
-      ...storeInputDetails,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   // EVERY TIMES DATA CHANGES VALIDATE FUNCTION  GET STARTED
   useEffect(() => {
-    setCheckFormEl(validatePersonal(storeInputDetails));
-    validatePersonal(storeInputDetails);
-    if (!imgUrl) {
-      setImgErrMsg(true);
-    } else {
-      setImgErrMsg(false);
-    }
-  }, [storeInputDetails]);
+    setCheckFormEl(validatePersonal(store));
+    validatePersonal(store);
+    !store.image ? setImgErrMsg("show") : setImgErrMsg("hide");
+  }, [store]);
 
   useEffect(() => {
     setCheckFormEl({});
-    setImgErrMsg(false);
+    !store.image && setImgErrMsg("hide");
+
   }, []);
 
   // SUBMITED FORM AND CHECK IF DATA IS SUBMITED NAVOGATE NEXT PAGE
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setCheckFormEl(validatePersonal(storeInputDetails));
+    setCheckFormEl(validatePersonal(store));
+    if (!store.image) {
+      setImgErrMsg("show");
+    } else {
+      setImgErrMsg("hide");
+    }
     if (
       checkFormEl.name &&
       checkFormEl.email &&
       checkFormEl.surname &&
       checkFormEl.phone_number &&
-      imgUrl
+      store.image
     ) {
       navigate("/experience");
     }
   };
 
-  // GET IMAGE URL
-  const handleFileSelect = (event) => {
-    setImgUrl(URL.createObjectURL(event.target.files[0]));
-    if (imgUrl) {
-      setImgErrMsg(false);
-    }
-  };
-
-  // IF ARROW ON THE TOP LEFT IS CLICKED REFRESH ALL SAVED DATA
-  const backAndRefresh = () => {
-    sessionStorage.clear();
-  };
   return (
     <>
       <div className="general__screen">
@@ -89,7 +62,7 @@ const GeneralPage = () => {
                   <InputField
                     name="name"
                     title="სახელი"
-                    value={storeInputDetails?.name}
+                    value={store?.name}
                     handleChange={handleChange}
                     checkFormEl={checkFormEl.name}
                     placeholder="ანზორ"
@@ -100,7 +73,7 @@ const GeneralPage = () => {
                   <InputField
                     name="surname"
                     title="გვარი"
-                    value={storeInputDetails?.surname}
+                    value={store?.surname}
                     handleChange={handleChange}
                     checkFormEl={checkFormEl.surname}
                     placeholder="მუმლაძე"
@@ -111,7 +84,7 @@ const GeneralPage = () => {
             </div>
             <div className="last--inputs">
               <div className="image__upload">
-                <h3 style={{ color: imgErrMsg ? "red" : "" }}>
+                <h3 style={{ color: imgErrMsg === "show" ? "red" : "" }}>
                   პირადი ფოტოს ატვირთვა
                 </h3>
 
@@ -129,7 +102,7 @@ const GeneralPage = () => {
                   type="text"
                   name="about_me"
                   placeholder="ზოგადი ინფო შენ შესახებ"
-                  value={storeInputDetails?.about_me}
+                  value={store?.about_me}
                   onChange={handleChange}
                 />
               </div>
@@ -137,7 +110,7 @@ const GeneralPage = () => {
                 <InputField
                   name="email"
                   title="ელ.ფოსტა"
-                  value={storeInputDetails?.email}
+                  value={store?.email}
                   handleChange={handleChange}
                   checkFormEl={checkFormEl.email}
                   placeholder="anzorr666@redberry.ge"
@@ -148,7 +121,7 @@ const GeneralPage = () => {
                 <InputField
                   name="phone_number"
                   title="მობილურის ნომერი"
-                  value={storeInputDetails?.phone_number}
+                  value={store?.phone_number}
                   handleChange={handleChange}
                   checkFormEl={checkFormEl.phone_number}
                   placeholder="+995 551 12 34 56"
@@ -162,10 +135,7 @@ const GeneralPage = () => {
           </form>
         </div>
         <Resume
-          data={storeInputDetails}
-          imgUrl={imgUrl}
-          expData={JSON.parse(sessionStorage.getItem("experienceData"))}
-          eduData={JSON.parse(sessionStorage.getItem("educationData"))}
+        
         />
       </div>
     </>

@@ -5,6 +5,7 @@ import RED_ICON from "../assets/images/warning-red-circle.png";
 import InputField2 from "../Layout/InputField2";
 import SelectMenu from "../Layout/SelectMenu";
 import validatePersonal from "../validation/validatePersonal";
+import validateData from "../validation/Exp&Edu&validation";
 import InputField from "../Layout/InputField";
 import arrowIcon from '../assets/images/Vector.png'
 
@@ -29,5 +30,6 @@ export {
   HomePage,
   InputField,
   validatePersonal,
-  arrowIcon
+  arrowIcon,
+  validateData
 };

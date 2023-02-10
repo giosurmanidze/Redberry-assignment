@@ -3,7 +3,7 @@ const validateData = (experienceData, type) => {
   const isSubmited = {};
   const errorKeys =
     type === "edu"
-      ? ["institute", "degree", "end_date", "description"]
+      ? ["institute", "degree_id", "end_date", "description"]
       : ["position", "employer", "start_date", "end_date", "desc"];
 
   experienceData?.forEach((inputField, index) => {
@@ -11,7 +11,7 @@ const validateData = (experienceData, type) => {
       type === "edu"
         ? [
             !inputField?.institute || inputField?.institute.length < 2,
-            !inputField?.degree,
+            !inputField?.degree_id,
             !inputField?.due_date,
             !inputField?.description,
           ]

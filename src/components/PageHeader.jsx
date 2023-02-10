@@ -1,15 +1,16 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { StoreContext } from "../context/appContext";
 import { arrowIcon } from "../reusableImports/imports";
 
 const PageHeader = ({ title, status }) => {
-  // IF ARROW ON THE TOP LEFT IS CLICKED REFRESH ALL SAVED DATA
-  const backAndRefresh = () => {
-    sessionStorage.clear();
-  };
+  const { clearLocalStorage } = useContext(StoreContext);
+
+
   return (
     <div className="header__details">
       <div className="arrow__icon">
-        <Link to="/" onClick={backAndRefresh}>
+        <Link to="/" onClick={clearLocalStorage}>
           <img src={arrowIcon} alt="arrow" />
         </Link>
       </div>
