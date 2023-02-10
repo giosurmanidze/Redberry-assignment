@@ -1,58 +1,26 @@
 import "./style/styles.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useSessionStorage from "../../hook/useSessionStorage";
 import {
   Resume,
   PageHeader,
   GREEN_ICON,
   RED_ICON,
   InputField2,
+  validateData
 } from "../../reusableImports/imports";
-import validateData from "../../validation/Exp&Edu&validation";
-
+import { StoreContext } from "../../context/appContext";
 
 const ExperiencePage = () => {
+  const {store,setExperienceInfo, handleInputChangeExp} =useContext(StoreContext)
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
-  const [experienceData, setExperienceData] = useSessionStorage(
-    "experienceData",
-    [
-      {
-        position: "",
-        employer: "",
-        start_date: "",
-        due_date: "",
-        description: "",
-      },
-    ]
-  );
-
-  // EVERY TIME THIS BUTTON IS CLICKED, FUNCTION FIRE 🔥
-  const handleAddExperience = () => {
-    setExperienceData([
-      ...experienceData,
-      {
-        position: "",
-        employer: "",
-        start_date: "",
-        due_date: "",
-        description: "",
-      },
-    ]);
-  };
-
-  const handleInputChange = (e, index, field) => {
-    const newInputFields = [...experienceData];
-    newInputFields[index][field] = e.target.value;
-    setExperienceData(newInputFields);
-  };
 
   // THIS PIECE OF CODE TAKES CARE OF ERROR HANDLING FOR EVERY CHANGE
   useEffect(() => {
-    const [newErrors] = validateData(experienceData,"exp");
+    const [newErrors] = validateData(store.experiences, "exp");
     setErrors(newErrors);
-  }, [experienceData]);
+  }, [store]);
 
   useEffect(() => {
     setErrors({});
@@ -61,7 +29,7 @@ const ExperiencePage = () => {
   // IF THE INPUTS DATA IS VALID AND INFORMATION IS POSTED THEN SHOW THIS CV
   const onSubmit = (e) => {
     e.preventDefault();
-    const [newErrors, isSubmited] = validateData(experienceData,"exp");
+    const [newErrors, isSubmited] = validateData(store.experiences, "exp");
     setErrors(newErrors);
     const ErrorLen = Object.keys(isSubmited).length;
     return !ErrorLen && navigate("/edu");
@@ -72,7 +40,7 @@ const ExperiencePage = () => {
       <div className="general__screen--left">
         <PageHeader title={"ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ"} status={2} />
         <form onSubmit={onSubmit}>
-          {experienceData.map((data, index) => (
+          {store?.experiences?.map((data, index) => (
             <div key={index} className="experience__form--container">
               <div className="postion--employer">
                 <div className="position">
@@ -84,7 +52,7 @@ const ExperiencePage = () => {
                     errorEl={errors && errors[index]?.position}
                     value={data.position}
                     handleInputChange={(e) =>
-                      handleInputChange(e, index, "position")
+                      handleInputChangeExp(e, index, "position")
                     }
                   />
                   <p>მინიმუმ 2 სიმბოლო</p>
@@ -98,7 +66,7 @@ const ExperiencePage = () => {
                     errorEl={errors && errors[index]?.employer}
                     value={data.employer}
                     handleInputChange={(e) =>
-                      handleInputChange(e, index, "employer")
+                      handleInputChangeExp(e, index, "employer")
                     }
                   />
                   <p>მინიმუმ 2 სიმბოლო</p>
@@ -131,7 +99,7 @@ const ExperiencePage = () => {
                     type="date"
                     name="start_date"
                     value={data.start_date}
-                    onChange={(e) => handleInputChange(e, index, "start_date")}
+                    onChange={(e) => handleInputChangeExp(e, index, "start_date")}
                     style={{
                       border: `${
                         errors && errors[index]?.start_date === "Invalid"
@@ -169,7 +137,7 @@ const ExperiencePage = () => {
                     type="date"
                     name="due_date"
                     value={data.due_date}
-                    onChange={(e) => handleInputChange(e, index, "due_date")}
+                    onChange={(e) => handleInputChangeExp(e, index, "due_date")}
                     style={{
                       border: `${
                         errors && errors[index]?.end_date === "Invalid"
@@ -200,7 +168,7 @@ const ExperiencePage = () => {
                     name="description"
                     value={data.description}
                     onChange={(event) =>
-                      handleInputChange(event, index, "description")
+                      handleInputChangeExp(event, index, "description")
                     }
                     style={{
                       border: `${
@@ -220,7 +188,7 @@ const ExperiencePage = () => {
           <button
             type="button"
             className="add__more"
-            onClick={handleAddExperience}
+            onClick={setExperienceInfo}
           >
             მეტი გამოცდილების დამატება
           </button>
@@ -235,9 +203,6 @@ const ExperiencePage = () => {
         </form>
       </div>
       <Resume
-        data={JSON.parse(sessionStorage.getItem("inputData"))}
-        imgUrl={JSON.parse(sessionStorage.getItem("imgUrl"))}
-        expData={JSON.parse(sessionStorage.getItem("experienceData"))}
       />
     </div>
   );

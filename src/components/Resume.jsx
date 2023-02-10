@@ -4,22 +4,20 @@ import EMAIL_ICON from "../assets/images/email-icon.png";
 import PHONE_ICON from "../assets/images/phone-icon.png";
 import DELETE_ICON from "../assets/images/delete--icon.png";
 import { Link, useHref } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { arrowIcon } from "../reusableImports/imports";
 import InfoCard from "./InfoCard";
+import { StoreContext } from "../context/appContext";
 
-const Resume = ({ data, imgUrl, expData, eduData }) => {
+const Resume = () => {
+  const { clearLocalStorage, store } = useContext(StoreContext);
   const [isShowPop, setIsShowPop] = useState(true);
   const ref = useHref();
 
-  // IF ARROW ON THE TOP LEFT IS CLICKED REFRESH ALL SAVED DATA
-  const backAndRefresh = () => {
-    sessionStorage.clear();
-  };
   return (
     <div className="resume__page">
       {ref === "/final-page" && (
-        <Link to="/" className="cv__arrow" onClick={backAndRefresh}>
+        <Link to="/" className="cv__arrow" onClick={clearLocalStorage}>
           <img src={arrowIcon} alt="arrow" />
         </Link>
       )}
@@ -29,29 +27,29 @@ const Resume = ({ data, imgUrl, expData, eduData }) => {
             <div className="header__infos">
               <div className="basic_info">
                 <h1>
-                  {data?.name} {data?.surname}
+                  {store?.name} {store?.surname}
                 </h1>
                 <p className="email__detail">
-                  {data?.email && <img src={EMAIL_ICON} />}
-                  {data?.email}
+                  {store?.email && <img src={EMAIL_ICON} />}
+                  {store?.email}
                 </p>
                 <p className="phone__detail">
-                  {data?.phone_number && <img src={PHONE_ICON} />}
-                  {data?.phone_number}
+                  {store?.phone_number && <img src={PHONE_ICON} />}
+                  {store?.phone_number}
                 </p>
               </div>
               <div className="about__me--info">
-                {data?.about_me && <h3>ჩემ შესახებ</h3>}
-                <p>{data?.about_me}</p>
+                {store?.about_me && <h3>ჩემ შესახებ</h3>}
+                <p>{store?.about_me}</p>
               </div>
             </div>
-            <img className="person__image" src={imgUrl} />
+            <img className="person__image" src={store.image} />
           </div>
           <div className="experience">
-            {expData && <div className="experience__line"></div>}
+            {store?.experiences && <div className="experience__line"></div>}
             <div className="info">
-              {expData && <h3 className="head ">გამოცდილება</h3>}
-              {expData?.map((info, i) => {
+              {store?.experiences && <h3 className="head ">გამოცდილება</h3>}
+              {store?.experiences?.map((info, i) => {
                 return (
                   <InfoCard
                     key={i}
@@ -66,17 +64,17 @@ const Resume = ({ data, imgUrl, expData, eduData }) => {
             </div>
           </div>
           <div className="experience">
-            {eduData && <div className="experience__line"></div>}
+            {store?.educations && <div className="experience__line"></div>}
 
             <div className="info">
-              {eduData && <h2 className="head">განათლება</h2>}
+              {store?.educations && <h2 className="head">განათლება</h2>}
 
-              {eduData?.map((info, i) => {
+              {store?.educations?.map((info, i) => {
                 return (
                   <InfoCard
                     key={i}
                     info_1={info.institute}
-                    info_2={info.degree}
+                    info_2={info.degree_id}
                     info_3=""
                     info_4={info.due_date}
                     info_5={info.description}

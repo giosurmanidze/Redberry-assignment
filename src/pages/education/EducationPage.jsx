@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useSessionStorage from "../../hook/useSessionStorage";
 import axios from "axios";
 import {
   Resume,
@@ -9,40 +8,15 @@ import {
   RED_ICON,
   InputField2,
   SelectMenu,
+  validateData,
 } from "../../reusableImports/imports";
-import validateData from "../../validation/Exp&Edu&validation";
+import { StoreContext } from "../../context/appContext";
 
 const EducationPage = () => {
+  const { store, setStore, setEducationInfo, handleInputChangeEdu } = useContext(StoreContext);
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
-  const [degrees, setDegrees] = useSessionStorage([]);
-  const [educationData, setEducationData] = useSessionStorage("educationData", [
-    {
-      institute: "",
-      degree: "",
-      due_date: "",
-      description: "",
-    },
-  ]);
-
-  // EVERY TIME THIS BUTTON IS CLICKED, FUNCTION FIRE 🔥
-  const handleAddEcudation = () => {
-    setEducationData([
-      ...educationData,
-      {
-        institute: "",
-        degree: "",
-        due_date: "",
-        description: "",
-      },
-    ]);
-  };
-
-  const handleInputChange = (e, index, field) => {
-    const newInputFields = [...educationData];
-    newInputFields[index][field] = e.target.value;
-    setEducationData(newInputFields);
-  };
+  const [degrees, setDegrees] = useState([]);
 
   // GET DEGREES DATA FROM AN API
   useEffect(() => {
@@ -59,11 +33,12 @@ const EducationPage = () => {
     fetchData();
   }, []);
 
+
   // THIS PIECE OF CODE TAKES CARE OF ERROR HANDLING FOR EVERY CHANGE
   useEffect(() => {
-    const [newErrors] = validateData(educationData, "edu");
+    const [newErrors] = validateData(store.educations, 'edu');
     setErrors(newErrors);
-  }, [educationData]);
+  }, [store]);
 
   useEffect(() => {
     setErrors({});
@@ -71,7 +46,7 @@ const EducationPage = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const [newErrors, isSubmited] = validateData(educationData, "edu");
+    const [newErrors, isSubmited] = validateData(store.educations, 'edu');
     setErrors(newErrors);
     const ErrorLen = Object.keys(isSubmited).length;
 
@@ -85,7 +60,7 @@ const EducationPage = () => {
       <div className="general__screen--left">
         <PageHeader title={"ᲒᲐᲜᲐᲗᲚᲔᲑᲐ"} status={3} />
         <form onSubmit={onSubmit}>
-          {educationData.map((data, index) => (
+          {store?.educations?.map((data, index) => (
             <div key={index} className="experience__form--container">
               <div className="postion--employer">
                 <div className="position">
@@ -97,7 +72,7 @@ const EducationPage = () => {
                     errorEl={errors && errors[index]?.institute}
                     value={data.institute}
                     handleInputChange={(e) =>
-                      handleInputChange(e, index, "institute")
+                      handleInputChangeEdu(e, index, "institute")
                     }
                   />
                   <p>მინიმუმ 2 სიმბოლო</p>
@@ -106,13 +81,13 @@ const EducationPage = () => {
               <div className="start__due--date">
                 <div className="start__date">
                   <SelectMenu
-                    value={data.degree}
+                    value={data.degree_id}
                     handleInputChange={(e) =>
-                      handleInputChange(e, index, "degree")
+                      handleInputChangeEdu(e, index, "degree_id")
                     }
                     degrees={degrees}
                     errors={errors}
-                    errorEl={errors && errors[index]?.degree}
+                    errorEl={errors && errors[index]?.degree_id}
                   />
                 </div>
 
@@ -142,7 +117,9 @@ const EducationPage = () => {
                     type="date"
                     name="due_date"
                     value={data.due_date}
-                    onChange={(e) => handleInputChange(e, index, "due_date")}
+                    onChange={(e) =>
+                      handleInputChangeEdu(e, index, "due_date")
+                    }
                     style={{
                       border: `${
                         errors && errors[index]?.end_date === "Invalid"
@@ -175,7 +152,7 @@ const EducationPage = () => {
                     name="description"
                     value={data.description}
                     onChange={(event) =>
-                      handleInputChange(event, index, "description")
+                      handleInputChangeEdu(event, index, "description")
                     }
                     style={{
                       border: `${
@@ -195,7 +172,7 @@ const EducationPage = () => {
           <button
             type="button"
             className="add__more"
-            onClick={handleAddEcudation}
+            onClick={setEducationInfo}
           >
             მეტი გამოცდილების დამატება
           </button>
@@ -209,12 +186,7 @@ const EducationPage = () => {
           </div>
         </form>
       </div>
-      <Resume
-        data={JSON.parse(sessionStorage.getItem("inputData"))}
-        imgUrl={JSON.parse(sessionStorage.getItem("imgUrl"))}
-        expData={JSON.parse(sessionStorage.getItem("experienceData"))}
-        eduData={JSON.parse(sessionStorage.getItem("educationData"))}
-      />
+      <Resume />
     </div>
   );
 };
