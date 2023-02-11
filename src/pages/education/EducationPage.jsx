@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { StoreContext } from "../../context/appContext";
 import axios from "axios";
 import {
   Resume,
@@ -10,10 +11,10 @@ import {
   SelectMenu,
   validateData,
 } from "../../reusableImports/imports";
-import { StoreContext } from "../../context/appContext";
 
 const EducationPage = () => {
-  const { store, setStore, setEducationInfo, handleInputChangeEdu } = useContext(StoreContext);
+  const { store, setEducationInfo, handleInputChangeEdu } =
+    useContext(StoreContext);
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [degrees, setDegrees] = useState([]);
@@ -33,10 +34,9 @@ const EducationPage = () => {
     fetchData();
   }, []);
 
-
   // THIS PIECE OF CODE TAKES CARE OF ERROR HANDLING FOR EVERY CHANGE
   useEffect(() => {
-    const [newErrors] = validateData(store.educations, 'edu');
+    const [newErrors] = validateData(store.educations, "edu");
     setErrors(newErrors);
   }, [store]);
 
@@ -44,9 +44,9 @@ const EducationPage = () => {
     setErrors({});
   }, []);
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    const [newErrors, isSubmited] = validateData(store.educations, 'edu');
+    const [newErrors, isSubmited] = validateData(store.educations, "edu");
     setErrors(newErrors);
     const ErrorLen = Object.keys(isSubmited).length;
 
@@ -117,9 +117,7 @@ const EducationPage = () => {
                     type="date"
                     name="due_date"
                     value={data.due_date}
-                    onChange={(e) =>
-                      handleInputChangeEdu(e, index, "due_date")
-                    }
+                    onChange={(e) => handleInputChangeEdu(e, index, "due_date")}
                     style={{
                       border: `${
                         errors && errors[index]?.end_date === "Invalid"
