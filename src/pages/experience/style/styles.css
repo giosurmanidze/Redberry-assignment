@@ -85,6 +85,9 @@ select {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  margin-top: 150px;
+  position: relative;
 }
 .btns button{
   display: flex;
@@ -102,8 +105,19 @@ select {
   line-height: 20px;
   letter-spacing: 0.08em;
   color: #ffffff;
-  bottom: 100px;
   position: absolute;
+}
+.submit__btn {
+  background-color: #6b40e3;
+  width: 151px;
+  height: 48px;
+  font-size: 16px;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  border-radius: 4px;
+  border: none;
+  position: abolute;
+  right: 0px;
 }
 
 .desc textarea {

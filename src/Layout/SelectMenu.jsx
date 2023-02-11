@@ -11,7 +11,7 @@ const SelectMenu = ({ value, errors, errorEl, handleInputChange, degrees }) => {
         ხარისხი
       </h3>
       <select
-        value={value}
+        value={value ? value : "none"}
         onChange={handleInputChange}
         style={{
           border: `${
@@ -26,6 +26,7 @@ const SelectMenu = ({ value, errors, errorEl, handleInputChange, degrees }) => {
         <option value="none" selected disabled hidden>
           აირჩიეთ ხარისხი
         </option>
+
         {degrees?.map((option, i) => (
           <option key={i} value={option.title}>
             {option.title}

@@ -120,8 +120,8 @@ form .last--inputs {
   font-weight: 400;
 }
 
-.general__screen .next--btn,
-.submit__btn {
+.general__screen .next--btn
+ {
   position: absolute;
   bottom: 100px;
   left: 797px;

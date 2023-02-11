@@ -58,6 +58,7 @@ const StoreContextProvider = (props) => {
     }
   };
 
+  
   const handleChange = (e) => {
     setStore((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -86,14 +87,13 @@ const StoreContextProvider = (props) => {
     setStore((prev) => {
       const newStore = {
         ...prev,
-        experiences: [
-          ...prev.experiences,
+        educations: [
+          ...prev.educations,
           {
-            position: "",
-            employer: "",
-            start_date: "",
+            institute: "",
             due_date: "",
             description: "",
+            degree_id: "",
           },
         ],
       };
@@ -116,14 +116,13 @@ const StoreContextProvider = (props) => {
   const handleInputChangeEdu = (e, index, field) => {
     const newEducations = [...store.educations];
     newEducations[index][field] = e.target.value;
+
     setStore((prev) => ({
       ...prev,
       educations: newEducations,
     }));
   };
 
-
-  
 
   return (
     <StoreContext.Provider
@@ -134,6 +133,7 @@ const StoreContextProvider = (props) => {
         handleFileSelect,
         setStore,
         setExperienceInfo,
+        setEducationInfo,
         handleInputChangeEdu,
         handleInputChangeExp
       }}

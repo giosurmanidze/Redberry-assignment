@@ -12,7 +12,8 @@ import {
 import { StoreContext } from "../../context/appContext";
 
 const ExperiencePage = () => {
-  const {store,setExperienceInfo, handleInputChangeExp} =useContext(StoreContext)
+  const {store,setExperienceInfo, handleInputChangeExp} = useContext(StoreContext)
+
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
 
