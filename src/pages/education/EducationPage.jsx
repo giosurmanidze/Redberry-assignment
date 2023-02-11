@@ -11,6 +11,8 @@ import {
   SelectMenu,
   validateData,
 } from "../../reusableImports/imports";
+import { motion } from "framer-motion";
+
 
 const EducationPage = () => {
   const { store, setEducationInfo, handleInputChangeEdu } =
@@ -56,7 +58,13 @@ const EducationPage = () => {
   };
 
   return (
-    <div className="experience__screen">
+    <motion.div
+      className="experience__screen"
+      initial={{width:0}}
+      animate={{width:"100%"}}
+      exit={{x:window.innerWidth, transition: {duration:0.1}}}
+
+    >
       <div className="general__screen--left">
         <PageHeader title={"განათლება"} status={3} />
         <form onSubmit={onSubmit}>
@@ -185,7 +193,7 @@ const EducationPage = () => {
         </form>
       </div>
       <Resume />
-    </div>
+    </motion.div>
   );
 };
 
