@@ -10,6 +10,8 @@ import {
   validateData
 } from "../../reusableImports/imports";
 import { StoreContext } from "../../context/appContext";
+import { motion } from "framer-motion";
+
 
 const ExperiencePage = () => {
   const {store,setExperienceInfo, handleInputChangeExp} = useContext(StoreContext)
@@ -37,7 +39,12 @@ const ExperiencePage = () => {
   };
 
   return (
-    <div className="experience__screen">
+    <motion.div className="experience__screen"
+    initial={{width:0}}
+    animate={{width:"100%"}}
+    exit={{x:window.innerWidth, transition: {duration:0.1}}}
+
+    >
       <div className="general__screen--left">
         <PageHeader title={"გამოცდილება"} status={2} />
         <form onSubmit={onSubmit}>
@@ -205,7 +212,7 @@ const ExperiencePage = () => {
       </div>
       <Resume
       />
-    </div>
+    </motion.div>
   );
 };
 

@@ -8,6 +8,8 @@ import {
   validatePersonal,
 } from "../../reusableImports/imports";
 import { StoreContext } from "../../context/appContext";
+import { motion } from "framer-motion";
+
 
 const GeneralPage = () => {
   const { handleChange, store, handleFileSelect } = useContext(StoreContext);
@@ -52,7 +54,12 @@ const GeneralPage = () => {
 
   return (
     <>
-      <div className="general__screen">
+      <motion.div className="general__screen"
+        initial={{width:0}}
+        animate={{width:"100%"}}
+        exit={{x:window.innerWidth, transition: {duration:0.1}}}
+
+      >
         <div className="general__screen--left">
           <PageHeader title={"პირადი ინფო"} status={1} />
           <form onSubmit={handleSubmit}>
@@ -135,9 +142,8 @@ const GeneralPage = () => {
           </form>
         </div>
         <Resume
-        
         />
-      </div>
+      </motion.div>
     </>
   );
 };
