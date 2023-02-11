@@ -1,10 +1,9 @@
 .resume__page .popUp__card h2 {
   font-size: 28px;
-  font-family: "Helvetica Neue";
+  font-family: HelveticaNeue;
   color: #1a1a1a;
   width: 364px;
   height: 86px;
-  font-style: normal;
   font-weight: 500;
   font-size: 28px;
   line-height: 43px;
@@ -130,6 +129,11 @@
 .header__infos .basic_info {
   padding-top: 30px;
 }
+.basic_info h1 {
+  font-family: HelveticaNeue;
+  font-size: 34px;
+  font-weight: 700;
+}
 .header {
   display: flex;
   gap: 1rem;
@@ -139,6 +143,9 @@
 .phone__detail {
   display: flex;
   align-items: center;
+  font-family: HelveticaNeue;
+  font-weight: 400;
+  color: #1A1A1A;
   gap: 1rem;
   font-size: 18px;
 }
@@ -153,6 +160,7 @@
 .info h3 {
   font-size: 18px;
   color: #f93b1d;
+  font-family: HelveticaNeue;
   font-weight: 700;
   line-height: 22px;
 }
@@ -167,15 +175,21 @@
   height: 100%;
   overflow: auto;
   top: 30px;
-  font-family: "Helvetica Neue";
+  font-family: HelveticaNeue;
   word-wrap: break-word;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
-  font-family: HelveticaNeue;
   text-transform: lowercase;
   color: #000000;
+}
+.experience__container p {
+  font-family: HelveticaNeue;
+  font-weight: 400;
+  line-height: 22px;
+  color: #000000;
+  font-size: 16px;
 }
 
 .experience__line {
@@ -218,7 +232,7 @@
   line-height: 19px;
   padding-top: 5px;
   color: #919191;
-  font-family: HelveticaNeue;
+  font-family: HelveticaNeue-italic;
 }
 .experience__container p {
   padding-top: 15px;
@@ -227,6 +241,9 @@
 .experience__container h3,
 .education__container h3 {
   color: #000000;
+  font-family: HelveticaNeue;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .header__details {

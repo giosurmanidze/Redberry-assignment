@@ -39,7 +39,7 @@ const ExperiencePage = () => {
   return (
     <div className="experience__screen">
       <div className="general__screen--left">
-        <PageHeader title={"ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ"} status={2} />
+        <PageHeader title={"გამოცდილება"} status={2} />
         <form onSubmit={onSubmit}>
           {store?.experiences?.map((data, index) => (
             <div key={index} className="experience__form--container">

@@ -74,8 +74,7 @@ select {
   background: #62a1eb;
   border-radius: 4px;
   border: none;
-  font-family: "HelveticaNeue";
-  font-style: normal;
+  font-family: HelveticaNeue;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
@@ -107,6 +106,12 @@ select {
   color: #ffffff;
   position: absolute;
 }
+
+.opt {
+  font-size: 16px;
+  font-family: HelveticaNeue;
+  font-weight: 400;
+}
 .submit__btn {
   background-color: #6b40e3;
   width: 151px;
@@ -129,7 +134,7 @@ select {
   flex-direction: column;
   border-left: 1px solid grey;
   font-size: 16px;
-  font-family: "HelveticaNeue";
+  font-family: HelveticaNeue;
   font-weight: 400;
   border-radius: 4px;
   overflow: auto;

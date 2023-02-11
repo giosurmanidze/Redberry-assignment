@@ -23,7 +23,7 @@ const SelectMenu = ({ value, errors, errorEl, handleInputChange, degrees }) => {
           }`,
         }}
       >
-        <option value="none" selected disabled hidden>
+        <option value="none" className="opt" selected disabled hidden>
           აირჩიეთ ხარისხი
         </option>
 

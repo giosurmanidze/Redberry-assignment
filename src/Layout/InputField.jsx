@@ -14,6 +14,7 @@ const InputField = ({
         style={{
           color: `${checkFormEl === "" ? "red" : ""}`,
         }}
+        className="input__title"
       >
         {title}
       </h3>

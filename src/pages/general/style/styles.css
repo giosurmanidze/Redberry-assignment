@@ -31,6 +31,7 @@ form .last--inputs h3 {
   display: flex;
   justify-content: space-between;
   padding-top: 40px;
+
 }
 .arrow__icon {
   width: 40px;
@@ -80,19 +81,25 @@ select {
   font-size: 16px;
   padding-left: 10px;
 }
-.first__two--inputs {
+.first__two--inputs{
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 796px;
+
+}
+.first__two--inputs h3,.experience__form--container h3{
+  font-size: 16px;
+  font-family: HelveticaNeue;
+  font-weight: 500;
 }
 
 .first__two--inputs input {
   width: 371px;
 }
-.first__two--inputs p {
+.first__two--inputs p, .experience__form--container p {
   color: #2e2e2e;
-  font-family: "Helvetica Neue";
+  font-family: HelveticaNeue;
   font-style: normal;
   font-weight: 300;
   font-size: 14px;
@@ -102,6 +109,7 @@ form .last--inputs {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
 }
 
 .last--inputs input {
@@ -139,8 +147,16 @@ form .last--inputs {
   gap: 2rem;
   align-items: center;
 }
-.last--inputs .image__upload h3 {
+.last--inputs .image__upload label {
+  font-size: 14px;
+  font-family: HelveticaNeue;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.last--inputs .image__upload h3  {
   font-size: 18px;
+  font-family: HelveticaNeue;
+  font-weight: 500;
 }
 
 form {
@@ -173,13 +189,23 @@ form input {
   color: #ffffff;
   border-radius: 4px;
 }
-
+form .last--inputs h3, form .last {
+  font-size: 16px;
+  font-family: HelveticaNeue;
+  font-weight: 500;
+}
 .red--border {
   border: 1px solid red;
 }
 
 .input__container {
   position: relative;
+}
+
+.top p {
+  font-family: HelveticaNeue;
+  font-size: 20px;
+  font-weight: 400px;
 }
 .green_icon {
   position: absolute;
@@ -194,4 +220,14 @@ form input {
 
 .about__me textarea::-webkit-scrollbar {
   width: 0;
+}
+.input__container p{
+  font-family: HelveticaNeue;
+  font-weight: 300;
+}
+
+.input__title {
+  font-size: 16px;
+  font-family: HelveticaNeue;
+  font-weight: 500;
 }
