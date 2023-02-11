@@ -58,7 +58,7 @@ const EducationPage = () => {
   return (
     <div className="experience__screen">
       <div className="general__screen--left">
-        <PageHeader title={"ᲒᲐᲜᲐᲗᲚᲔᲑᲐ"} status={3} />
+        <PageHeader title={"განათლება"} status={3} />
         <form onSubmit={onSubmit}>
           {store?.educations?.map((data, index) => (
             <div key={index} className="experience__form--container">
@@ -179,7 +179,7 @@ const EducationPage = () => {
               უკან
             </button>
             <button type="submit" className="submit__btn" onClick={onSubmit}>
-              დამახსოვრება
+              დასრულდა
             </button>
           </div>
         </form>

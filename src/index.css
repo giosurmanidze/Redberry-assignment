@@ -8,6 +8,10 @@
     font-family: HelveticaNeue;
     src: url("/src/assets/fonts/HelveticaNeue.ttc");
   }
+  @font-face {
+    font-family: HelveticaNeue-italic;
+    src: url("/src/assets/fonts/HelveticaNeue-LightItalic-09.ttf");
+  }
 
 ::-webkit-scrollbar {
   width: 3px;

@@ -68,7 +68,7 @@ const Resume = () => {
             {store?.educations && <div className="experience__line"></div>}
 
             <div className="info">
-              {store?.educations && <h2 className="head">განათლება</h2>}
+              {store?.educations && <h3 className="head">განათლება</h3>}
 
               {store?.educations?.map((info, i) => {
                 return (
