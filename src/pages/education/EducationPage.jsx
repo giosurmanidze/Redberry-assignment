@@ -13,9 +13,8 @@ import {
 } from "../../reusableImports/imports";
 import { motion } from "framer-motion";
 
-
 const EducationPage = () => {
-  const { store, setEducationInfo, handleInputChangeEdu } =
+  const { store, setEducationInfo, handleInputChangeEdu, setResponseData } =
     useContext(StoreContext);
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
@@ -46,24 +45,110 @@ const EducationPage = () => {
     setErrors({});
   }, []);
 
+  const checkDegreeId = (val) => {
+    switch (val) {
+      case "საშუალო სკოლის დიპლომი":
+        return 1;
+      case "ზოგადსაგანმანათლებლო დიპლომი":
+        return 2;
+      case "ბაკალავრი":
+        return 3;
+      case "მაგისტრი":
+        return 4;
+      case "დოქტორი":
+        return 5;
+      case "ასოცირებული ხარისხი":
+        return 6;
+      case "სტუდენტი":
+        return 7;
+      case "კოლეჯი(ხარისიხს გარეშე)":
+        return 8;
+      case "სხვა":
+        return 9;
+      default:
+        return 0;
+    }
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
     const [newErrors, isSubmited] = validateData(store.educations, "edu");
     setErrors(newErrors);
     const ErrorLen = Object.keys(isSubmited).length;
 
-    if (!ErrorLen) {
-      navigate("/final-page");
-    }
+    const updatedStore = {
+      ...store,
+      educations: store.educations?.map((data) => {
+        return {
+          ...data,
+          degree_id: checkDegreeId(data.degree_id),
+        };
+      }),
+    };
+
+const formData = new FormData();
+
+formData.append("name", updatedStore.name);
+formData.append("surname", updatedStore.surname);
+formData.append("email", updatedStore.email);
+formData.append("phone_number", updatedStore.phone_number);
+
+updatedStore.experiences.forEach((experience, index) => {
+  formData.append(`experiences[${index}][position]`, experience.position);
+  formData.append(`experiences[${index}][employer]`, experience.employer);
+  formData.append(
+    `experiences[${index}][start_date]`,
+    experience.start_date
+  );
+  formData.append(`experiences[${index}][due_date]`, experience.due_date);
+  formData.append(
+    `experiences[${index}][description]`,
+    experience.description
+  );
+});
+
+updatedStore.educations.forEach((education, index) => {
+  formData.append(`educations[${index}][institute]`, education.institute);
+  formData.append(`educations[${index}][due_date]`, education.due_date);
+  formData.append(
+    `educations[${index}][description]`,
+    education.description
+  );
+  formData.append(`educations[${index}][degree_id]`, education.degree_id);
+});
+
+fetch(updatedStore.image)
+  .then((response) => response.blob())
+  .then((blob) => {
+    formData.append("image", blob, "image.png");
+    axios({
+      method: "POST",
+      url: "https://resume.redberryinternship.ge/api/cvs",
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+      .then(function (response) {
+        if (!ErrorLen && response.status === 201) {
+          navigate("/final-page");
+        }
+        setResponseData(response.data);
+      })
+      .catch(function (response) {
+        console.log(response);
+      });
+  });
+formData.append("about_me", updatedStore.about_me);
+
+
+   
   };
 
   return (
     <motion.div
       className="experience__screen"
-      initial={{width:0}}
-      animate={{width:"100%"}}
-      exit={{x:window.innerWidth, transition: {duration:0.1}}}
-
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
     >
       <div className="general__screen--left">
         <PageHeader title={"განათლება"} status={3} />

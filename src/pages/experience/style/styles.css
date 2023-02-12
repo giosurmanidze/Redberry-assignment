@@ -3,11 +3,14 @@
   height: 103px;
 }
 
-.experience__form--container {
+.general__screen--left {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   position: relative;
+  height: 1080px;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 .devider--line {
