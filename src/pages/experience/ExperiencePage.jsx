@@ -38,6 +38,8 @@ const ExperiencePage = () => {
     return !ErrorLen && navigate("/edu");
   };
 
+
+
   return (
     <motion.div className="experience__screen"
     initial={{width:0}}

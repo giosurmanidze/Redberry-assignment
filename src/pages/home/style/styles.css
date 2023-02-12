@@ -47,4 +47,8 @@
   color: #ffffff;
   font-size: 20px;
   font-family: HelveticaNeue;
+  cursor: pointer;
+}
+button {
+  cursor: pointer;
 }

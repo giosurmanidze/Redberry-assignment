@@ -22,7 +22,8 @@ const initStore = {
       degree_id: "",
     },
   ],
-  image: "",
+  // url: "",
+  image:'',
   about_me: "",
 };
 
@@ -35,7 +36,7 @@ export const StoreContext = createContext();
 
 const StoreContextProvider = (props) => {
   const [store, setStore] = useState(inistialState);
-
+  const [responseData, setResponseData] = useState()
 
   useEffect(() => {
     localStorage.setItem("store", JSON.stringify(store));
@@ -45,22 +46,22 @@ const StoreContextProvider = (props) => {
     setStore(initStore);
   };
 
+
+
   // GET IMAGE URL
   const handleFileSelect = (event) => {
+
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
+      
       reader.onload = () => {
         const dataUrl = reader.result;
-        setStore((prev) => ({ ...prev, image: dataUrl }));
+        setStore((prev) => ({ ...prev, image: dataUrl}));
       };
+      
     }
-  };
-
-  
-  const handleChange = (e) => {
-    setStore((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   // EVERY TIME THIS BUTTON IS CLICKED, FUNCTION FIRE 🔥
@@ -102,13 +103,12 @@ const StoreContextProvider = (props) => {
     });
   };
 
-  
   const handleInputChangeExp = (e, index, field) => {
     const newExperiences = [...store.experiences];
-    newExperiences[index][field] = e.target.value;
+      newExperiences[index][field] = e.target.value;
     setStore((prev) => ({
       ...prev,
-      experiences: newExperiences,
+      experiences: newExperiences
     }));
   };
 
@@ -123,19 +123,21 @@ const StoreContextProvider = (props) => {
     }));
   };
 
+ 
+
 
   return (
     <StoreContext.Provider
       value={{
         store,
-        handleChange,
         clearLocalStorage,
         handleFileSelect,
         setStore,
         setExperienceInfo,
         setEducationInfo,
         handleInputChangeEdu,
-        handleInputChangeExp
+        handleInputChangeExp,
+        setResponseData, responseData
       }}
     >
       {props.children}

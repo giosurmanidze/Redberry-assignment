@@ -10,27 +10,42 @@ import {
 import { StoreContext } from "../../context/appContext";
 import { motion } from "framer-motion";
 
-
 const GeneralPage = () => {
-  const { handleChange, store, handleFileSelect } = useContext(StoreContext);
+  const { store,setStore, handleFileSelect } = useContext(StoreContext);
   const [checkFormEl, setCheckFormEl] = useState({});
   const [imgErrMsg, setImgErrMsg] = useState("hide");
 
   const navigate = useNavigate();
 
+  const handleChange = (e) => {
+    setStore((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    if (!store.image) {
+      setImgErrMsg("show");
+    } else {
+      setImgErrMsg("hide");
+    }
+  };
+
+
   // EVERY TIMES DATA CHANGES VALIDATE FUNCTION  GET STARTED
   useEffect(() => {
     setCheckFormEl(validatePersonal(store));
     validatePersonal(store);
-    !store.image ? setImgErrMsg("show") : setImgErrMsg("hide");
+    if (!store.image) {
+      setImgErrMsg("show");
+    } else {
+      setImgErrMsg("hide");
+    }
   }, [store]);
 
+  
   useEffect(() => {
     setCheckFormEl({});
     !store.image && setImgErrMsg("hide");
-
   }, []);
 
+  
+  
   // SUBMITED FORM AND CHECK IF DATA IS SUBMITED NAVOGATE NEXT PAGE
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,11 +69,11 @@ const GeneralPage = () => {
 
   return (
     <>
-      <motion.div className="general__screen"
-        initial={{width:0}}
-        animate={{width:"100%"}}
-        exit={{x:window.innerWidth, transition: {duration:0.1}}}
-
+      <motion.div
+        className="general__screen"
+        initial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
       >
         <div className="general__screen--left">
           <PageHeader title={"პირადი ინფო"} status={1} />
@@ -91,7 +106,7 @@ const GeneralPage = () => {
             </div>
             <div className="last--inputs">
               <div className="image__upload">
-                <h3 style={{ color: imgErrMsg === "show" ? "red" : "" }}>
+                <h3 style={{ color: imgErrMsg === "show" ? "red" :imgErrMsg === 'hide' ? "" :'' }}>
                   პირადი ფოტოს ატვირთვა
                 </h3>
 
@@ -141,8 +156,7 @@ const GeneralPage = () => {
             </div>
           </form>
         </div>
-        <Resume
-        />
+        <Resume />
       </motion.div>
     </>
   );

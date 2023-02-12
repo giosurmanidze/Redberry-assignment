@@ -49,7 +49,7 @@ const Resume = () => {
           <div className="experience">
             {store?.experiences && <div className="experience__line"></div>}
             <div className="info">
-              {store?.experiences&& <h3 className="head ">გამოცდილება</h3>}
+              {store?.experiences && <h3 className="head ">გამოცდილება</h3>}
               {store?.experiences?.map((info, i) => {
                 return (
                   <InfoCard
