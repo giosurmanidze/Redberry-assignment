@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const initStore = {
   name: "",
@@ -36,7 +37,7 @@ export const StoreContext = createContext();
 
 const StoreContextProvider = (props) => {
   const [store, setStore] = useState(inistialState);
-  const [responseData, setResponseData] = useState()
+  const [responseData, setResponseData] = useLocalStorage("responseData", )
 
   useEffect(() => {
     localStorage.setItem("store", JSON.stringify(store));
