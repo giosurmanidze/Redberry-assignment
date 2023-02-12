@@ -213,6 +213,7 @@ const ExperiencePage = () => {
         </form>
       </div>
       <Resume
+      data={store}
       />
     </motion.div>
   );

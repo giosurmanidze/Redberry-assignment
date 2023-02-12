@@ -156,7 +156,7 @@ const GeneralPage = () => {
             </div>
           </form>
         </div>
-        <Resume />
+        <Resume data={store}/>
       </motion.div>
     </>
   );

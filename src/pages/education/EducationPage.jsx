@@ -277,7 +277,7 @@ formData.append("about_me", updatedStore.about_me);
           </div>
         </form>
       </div>
-      <Resume />
+      <Resume data={store}/>
     </motion.div>
   );
 };
