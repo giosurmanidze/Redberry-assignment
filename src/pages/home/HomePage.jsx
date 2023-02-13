@@ -2,16 +2,20 @@ import "./style/styles.css";
 import { useNavigate } from "react-router-dom";
 import { AGENCY, COMPANY_LOGO } from "../../reusableImports/imports";
 import { motion } from "framer-motion";
+import { useContext } from "react";
+import { StoreContext } from "../../context/appContext";
 
 const HomePage = () => {
+  const { pageVariants } = useContext(StoreContext);
   const navigate = useNavigate();
 
   return (
     <motion.div
       className="landing__screen"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{duration: 0.75, ease:'easeOut'}}
+      variants={pageVariants}
+      initial="initial"
+      animate="enter"
+      exit="exit"
     >
       <div className="landing__top">
         <img src={COMPANY_LOGO} className="landing__top--logo" />
