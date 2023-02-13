@@ -108,7 +108,9 @@
   left: 501px;
   top: 18px;
   object-fit: cover;
+  
 }
+
 
 .header__infos {
   display: flex;
@@ -251,4 +253,12 @@
   display: flex;
   gap: 2rem;
   
+}
+
+.person__image {
+  display: none;
+}
+.person__image[src*="http"],
+.person__image[src*="data"] {
+  display: block;
 }
