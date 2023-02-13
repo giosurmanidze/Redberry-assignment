@@ -1,8 +1,9 @@
 const validatePersonal = (values) => {
     const response = {};
     const REGEX_EMAIL = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@redberry.ge/;
-    const REGEX_PHONE = /^\+995(79\d{7}|5\d{8})$/;
+    const REGEX_PHONE = /^\+995\s5\d{2}\s\d{2}\s\d{2}\s\d{2}$/;
     const REGEX_NAME = /^[ა-ჰ]*$/;
+   
   
     // username checking
     (!values?.name || !REGEX_NAME.test(values?.name) || values?.name.length < 2) ? response.name = "" : response.name = true;

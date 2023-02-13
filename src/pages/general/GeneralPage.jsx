@@ -19,13 +19,15 @@ const GeneralPage = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setStore((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const {value,name} = e.target
+    setStore((prev) => ({ ...prev, [name]:value }));
     if (!store.image) {
       setImgErrMsg("show");
     } else {
       setImgErrMsg("hide");
     }
   };
+
 
   // EVERY TIMES DATA CHANGES VALIDATE FUNCTION  GET STARTED
   useEffect(() => {
@@ -43,10 +45,11 @@ const GeneralPage = () => {
     !store.image && setImgErrMsg("hide");
   }, []);
 
+
+
   // SUBMITED FORM AND CHECK IF DATA IS SUBMITED NAVOGATE NEXT PAGE
   const handleSubmit = (e) => {
     e.preventDefault();
-
     setCheckFormEl(validatePersonal(store));
     if (!store.image) {
       setImgErrMsg("show");
