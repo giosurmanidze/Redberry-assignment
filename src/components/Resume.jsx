@@ -1,5 +1,5 @@
 import "./styles/Resume.css";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../context/appContext";
 import {
   PHONE_ICON,
@@ -9,7 +9,8 @@ import {
 } from "../reusableImports/imports";
 
 const Resume = () => {
-  const { store } = useContext(StoreContext);
+  const { store, areAllExpEmpty,areAllEduEmpty } = useContext(StoreContext);
+
 
   return (
     <div className="resume__page">
@@ -38,9 +39,9 @@ const Resume = () => {
             <img className="person__image" src={store.image} />
           </div>
           <div className="experience">
-            {store?.experiences && <div className="experience__line"></div>}
+            {!areAllExpEmpty && <div className="experience__line"></div>}
             <div className="info">
-              {store?.experiences && <h3 className="head ">გამოცდილება</h3>}
+              {!areAllExpEmpty && <h3 className="head ">გამოცდილება</h3>}
               {store?.experiences?.map((info, i) => {
                 return (
                   <InfoCard
@@ -56,10 +57,10 @@ const Resume = () => {
             </div>
           </div>
           <div className="experience">
-            {store?.educations && <div className="experience__line"></div>}
+            {!areAllEduEmpty && <div className="experience__line"></div>}
 
             <div className="info">
-              {store?.educations && <h3 className="head">განათლება</h3>}
+              {!areAllEduEmpty && <h3 className="head">განათლება</h3>}
 
               {store?.educations?.map((info, i) => {
                 return (
