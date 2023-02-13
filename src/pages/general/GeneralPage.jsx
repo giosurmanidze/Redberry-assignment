@@ -128,6 +128,7 @@ const GeneralPage = () => {
               <div className="about__me">
                 <h3>ჩემ შესახებ (არასავალდებულო)</h3>
                 <textarea
+                className="general__area"
                   type="text"
                   name="about_me"
                   placeholder="ზოგადი ინფო შენ შესახებ"

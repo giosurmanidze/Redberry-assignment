@@ -173,7 +173,7 @@ const ExperiencePage = () => {
                     აღწერა
                   </h3>
                   <textarea
-                    className="cv__textArea"
+                    className="cv__textArea--exp"
                     type="text"
                     placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
                     name="description"
