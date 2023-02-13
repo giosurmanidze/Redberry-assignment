@@ -6,7 +6,7 @@ const InputField = ({
   name,
   value,
   title,
-  handleChange,
+  handleChange,onKey
 }) => {
   return (
     <>
@@ -24,6 +24,7 @@ const InputField = ({
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
+        onKeyDown={(e) => onKey(e)}
         style={{
           border: `${
             checkFormEl === ""
