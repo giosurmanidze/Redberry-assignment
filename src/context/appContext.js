@@ -72,7 +72,6 @@ const StoreContextProvider = (props) => {
     if (file) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
-
       reader.onload = () => {
         const dataUrl = reader.result;
         setStore((prev) => ({ ...prev, image: dataUrl }));
@@ -138,10 +137,22 @@ const StoreContextProvider = (props) => {
     }));
   };
 
+
+
+  // CHECKING VALUES FOR  EXPERIENCES AND EDUCATIONS
+  const areAllExpEmpty = store.experiences.every((experience) => {
+    return Object.values(experience).every((value) => value === "");
+  });
+  const areAllEduEmpty = store.educations.every((education) => {
+    return Object.values(education).every((value) => value === "");
+  });
+
   return (
     <StoreContext.Provider
       value={{
         store,
+        areAllExpEmpty,
+        areAllEduEmpty,
         clearLocalStorage,
         handleFileSelect,
         setStore,
