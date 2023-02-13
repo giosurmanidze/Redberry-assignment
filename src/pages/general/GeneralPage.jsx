@@ -11,7 +11,8 @@ import { StoreContext } from "../../context/appContext";
 import { motion } from "framer-motion";
 
 const GeneralPage = () => {
-  const { store,setStore, handleFileSelect } = useContext(StoreContext);
+  const { store, setStore, handleFileSelect, pageVariants } =
+    useContext(StoreContext);
   const [checkFormEl, setCheckFormEl] = useState({});
   const [imgErrMsg, setImgErrMsg] = useState("hide");
 
@@ -26,7 +27,6 @@ const GeneralPage = () => {
     }
   };
 
-
   // EVERY TIMES DATA CHANGES VALIDATE FUNCTION  GET STARTED
   useEffect(() => {
     setCheckFormEl(validatePersonal(store));
@@ -38,14 +38,11 @@ const GeneralPage = () => {
     }
   }, [store]);
 
-  
   useEffect(() => {
     setCheckFormEl({});
     !store.image && setImgErrMsg("hide");
   }, []);
 
-  
-  
   // SUBMITED FORM AND CHECK IF DATA IS SUBMITED NAVOGATE NEXT PAGE
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -71,9 +68,10 @@ const GeneralPage = () => {
     <>
       <motion.div
         className="general__screen"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{duration: 0.75, ease:'easeOut'}}
+        variants={pageVariants}
+        initial="initial"
+        animate="enter"
+        exit="exit"
       >
         <div className="general__screen--left">
           <PageHeader title={"პირადი ინფო"} status={1} />
@@ -106,7 +104,16 @@ const GeneralPage = () => {
             </div>
             <div className="last--inputs">
               <div className="image__upload">
-                <h3 style={{ color: imgErrMsg === "show" ? "red" :imgErrMsg === 'hide' ? "" :'' }}>
+                <h3
+                  style={{
+                    color:
+                      imgErrMsg === "show"
+                        ? "red"
+                        : imgErrMsg === "hide"
+                        ? ""
+                        : "",
+                  }}
+                >
                   პირადი ფოტოს ატვირთვა
                 </h3>
 

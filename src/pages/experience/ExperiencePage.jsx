@@ -14,7 +14,7 @@ import { motion } from "framer-motion";
 
 
 const ExperiencePage = () => {
-  const {store,setExperienceInfo, handleInputChangeExp} = useContext(StoreContext)
+  const {store,setExperienceInfo, handleInputChangeExp, pageVariants} = useContext(StoreContext)
 
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
@@ -42,9 +42,10 @@ const ExperiencePage = () => {
 
   return (
     <motion.div className="experience__screen"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{duration: 0.75, ease:'easeOut'}}
+    variants={pageVariants}
+    initial="initial"
+    animate="enter"
+    exit="exit"
 
     >
       <div className="general__screen--left">

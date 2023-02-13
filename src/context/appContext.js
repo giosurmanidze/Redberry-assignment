@@ -66,20 +66,9 @@ const StoreContextProvider = (props) => {
     localStorage.setItem("store", JSON.stringify(store));
   }, [store]);
 
-  // GET IMAGE URL
-  const handleFileSelect = (event) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        const dataUrl = reader.result;
-        setStore((prev) => ({ ...prev, image: dataUrl }));
-      };
-    }
-  };
+ 
 
-  // EVERY TIME THIS BUTTON IS CLICKED, FUNCTION FIRE 🔥
+  // EVERY TIME THIS BUTTON IS CLICKED, FUNCTION FIRE AND ADDED NEW ONES 🔥
   const setExperienceInfo = () => {
     setStore((prev) => {
       const newStore = {
@@ -95,7 +84,6 @@ const StoreContextProvider = (props) => {
           },
         ],
       };
-      // localStorage.setItem("store", JSON.stringify(newStore));
       return newStore;
     });
   };
@@ -113,9 +101,25 @@ const StoreContextProvider = (props) => {
           },
         ],
       };
-      // localStorage.setItem("store", JSON.stringify(newStore));
       return newStore;
     });
+  };
+
+
+
+  //HANDLECHANGE FUNCTIONS
+
+   // GET IMAGE URL
+   const handleFileSelect = (event) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const dataUrl = reader.result;
+        setStore((prev) => ({ ...prev, image: dataUrl }));
+      };
+    }
   };
 
   const handleInputChangeExp = (e, index, field) => {
@@ -147,6 +151,31 @@ const StoreContextProvider = (props) => {
     return Object.values(education).every((value) => value === "");
   });
 
+
+  //PAGE ANIMATION VARIANTS
+  const pageVariants = {
+    initial: {
+      opacity: 0,
+      x: "-100vw"
+    },
+    enter: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "tween",
+        duration: 0.3
+      }
+    },
+    exit: {
+      opacity: 0,
+      x: "100vw",
+      transition: {
+        type: "tween",
+        duration: 0.3
+      }
+    }
+  };
+  
   return (
     <StoreContext.Provider
       value={{
@@ -162,6 +191,7 @@ const StoreContextProvider = (props) => {
         handleInputChangeExp,
         setResponseData,
         responseData,
+        pageVariants
       }}
     >
       {props.children}

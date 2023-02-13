@@ -14,15 +14,16 @@ import {
 import { StoreContext } from "../../context/appContext";
 
 const FinalPage = () => {
-  const { responseData, clearLocalStorage } = useContext(StoreContext);
+  const { responseData, clearLocalStorage, pageVariants } = useContext(StoreContext);
   const [isShowPop, setIsShowPop] = useState(true);
 
   return (
     <motion.div
       className="resume__screen"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{duration: 0.75, ease:'easeOut'}}
+      variants={pageVariants}
+      initial="initial"
+      animate="enter"
+      exit="exit"
     >
       <div className="cv__info">
         <div className="resume__page">
@@ -57,13 +58,9 @@ const FinalPage = () => {
                 />
               </div>
               <div className="experience">
-                {responseData?.experiences && (
                   <div className="experience__line"></div>
-                )}
                 <div className="info">
-                  {responseData?.experiences && (
                     <h3 className="head ">გამოცდილება</h3>
-                  )}
                   {responseData?.experiences?.map((info, i) => {
                     return (
                       <InfoCard
@@ -79,15 +76,9 @@ const FinalPage = () => {
                 </div>
               </div>
               <div className="experience">
-                {responseData?.educations && (
                   <div className="experience__line"></div>
-                )}
-
                 <div className="info">
-                  {responseData?.educations && (
                     <h3 className="head">განათლება</h3>
-                  )}
-
                   {responseData?.educations?.map((info, i) => {
                     return (
                       <InfoCard

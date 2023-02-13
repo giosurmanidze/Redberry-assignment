@@ -1,5 +1,5 @@
 import "./styles/Resume.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { StoreContext } from "../context/appContext";
 import {
   PHONE_ICON,
