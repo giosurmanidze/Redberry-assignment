@@ -23,6 +23,7 @@ const GeneralPage = () => {
     setStore((prev) => ({ ...prev, [name]: value }));
     !store.image ? setImgErrMsg("show") : setImgErrMsg("hide");
 
+    // FOR PHONE INPUT
     if (value.startsWith("+995")) {
       const formattedPhone = formatPhoneNumber(value);
       setStore((prev) => ({ ...prev, phone_number: formattedPhone }));

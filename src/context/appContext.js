@@ -218,7 +218,6 @@ const StoreContextProvider = (props) => {
   };
 
 
-
   // PHONE GEORGIAN FORMAT
   const formatPhoneNumber = value => {
     if (!value) return value;
