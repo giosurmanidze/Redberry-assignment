@@ -37,7 +37,6 @@ const StoreContextProvider = (props) => {
   const [store, setStore] = useState(inistialState);
   const [responseData, setResponseData] = useState();
 
-
   const clearLocalStorage = () => {
     setStore({
       ...initStore,
@@ -61,12 +60,9 @@ const StoreContextProvider = (props) => {
     });
   };
 
-  
   useEffect(() => {
     localStorage.setItem("store", JSON.stringify(store));
   }, [store]);
-
- 
 
   // EVERY TIME THIS BUTTON IS CLICKED, FUNCTION FIRE AND ADDED NEW ONES 🔥
   const setExperienceInfo = () => {
@@ -105,12 +101,10 @@ const StoreContextProvider = (props) => {
     });
   };
 
-
-
   //HANDLECHANGE FUNCTIONS
 
-   // GET IMAGE URL
-   const handleFileSelect = (event) => {
+  // GET IMAGE URL
+  const handleFileSelect = (event) => {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
@@ -141,8 +135,6 @@ const StoreContextProvider = (props) => {
     }));
   };
 
-
-
   // CHECKING VALUES FOR  EXPERIENCES AND EDUCATIONS
   const areAllExpEmpty = store.experiences.every((experience) => {
     return Object.values(experience).every((value) => value === "");
@@ -151,32 +143,29 @@ const StoreContextProvider = (props) => {
     return Object.values(education).every((value) => value === "");
   });
 
-
   //PAGE ANIMATION VARIANTS
   const pageVariants = {
     initial: {
       opacity: 0,
-      x: "-100vw"
+      x: "-100vw",
     },
     enter: {
       opacity: 1,
       x: 0,
       transition: {
         type: "tween",
-        duration: 0.3
-      }
+        duration: 0.3,
+      },
     },
     exit: {
       opacity: 0,
       x: "100vw",
       transition: {
         type: "tween",
-        duration: 0.3
-      }
-    }
+        duration: 0.3,
+      },
+    },
   };
-
-
 
   // CHECKING DEGREESM IDs
   const checkDegreeId = (val) => {
@@ -204,11 +193,10 @@ const StoreContextProvider = (props) => {
     }
   };
 
-
   // UPDATED VERSION OF STORE DATA, THAT WAS GOOD FOR BACK
   const updatedStore = {
     ...store,
-    phone_number: store.phone_number.replace(/\s/g, ''),
+    phone_number: store.phone_number?.replace(/\s/g, ""),
     educations: store.educations?.map((data) => {
       return {
         ...data,
@@ -217,27 +205,39 @@ const StoreContextProvider = (props) => {
     }),
   };
 
-
   // PHONE GEORGIAN FORMAT
-  const formatPhoneNumber = value => {
+  const formatPhoneNumber = (value) => {
     if (!value) return value;
     const phoneNumber = value.replace(/[^\d+]/g, "");
     const phoneNumberLength = phoneNumber.length;
-    if(phoneNumberLength < 5) return phoneNumber;
-    if(phoneNumberLength < 8) {
-      return `${phoneNumber.slice(0,4)} ${phoneNumber.slice(4,7)}`
+    if (phoneNumberLength < 5) return phoneNumber;
+    if (phoneNumberLength < 8) {
+      return `${phoneNumber.slice(0, 4)} ${phoneNumber.slice(4, 7)}`;
     }
-    if(phoneNumberLength < 10) {
-      return `${phoneNumber.slice(0,4)} ${phoneNumber.slice(4,7)} ${phoneNumber.slice(7,11)}`
+    if (phoneNumberLength < 10) {
+      return `${phoneNumber.slice(0, 4)} ${phoneNumber.slice(
+        4,
+        7
+      )} ${phoneNumber.slice(7, 11)}`;
     }
-    if(phoneNumberLength < 13) {
-      return `${phoneNumber.slice(0,4)} ${phoneNumber.slice(4,7)} ${phoneNumber.slice(7,9)} ${phoneNumber.slice(9,11)} ${phoneNumber.slice(11,13)}`
+    if (phoneNumberLength < 13) {
+      return `${phoneNumber.slice(0, 4)} ${phoneNumber.slice(
+        4,
+        7
+      )} ${phoneNumber.slice(7, 9)} ${phoneNumber.slice(
+        9,
+        11
+      )} ${phoneNumber.slice(11, 13)}`;
     }
-    return `${phoneNumber.slice(0,4)} ${phoneNumber.slice(4,7)} ${phoneNumber.slice(7,9)} ${phoneNumber.slice(9,11)} ${phoneNumber.slice(11,13)}`
-  }
-  
+    return `${phoneNumber.slice(0, 4)} ${phoneNumber.slice(
+      4,
+      7
+    )} ${phoneNumber.slice(7, 9)} ${phoneNumber.slice(
+      9,
+      11
+    )} ${phoneNumber.slice(11, 13)}`;
+  };
 
-  
   return (
     <StoreContext.Provider
       value={{
@@ -256,7 +256,7 @@ const StoreContextProvider = (props) => {
         pageVariants,
         checkDegreeId,
         updatedStore,
-        formatPhoneNumber
+        formatPhoneNumber,
       }}
     >
       {props.children}
