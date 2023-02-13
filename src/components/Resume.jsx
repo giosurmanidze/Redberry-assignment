@@ -9,8 +9,7 @@ import {
 } from "../reusableImports/imports";
 
 const Resume = () => {
-  const { store, areAllExpEmpty,areAllEduEmpty } = useContext(StoreContext);
-
+  const { store, areAllExpEmpty, areAllEduEmpty } = useContext(StoreContext);
 
   return (
     <div className="resume__page">
