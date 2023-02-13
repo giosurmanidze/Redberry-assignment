@@ -81,7 +81,7 @@
 }
 
 .inner__div::-webkit-scrollbar {
-  width: 0.3rem;
+  width: 1px;
 }
 
 ::-webkit-scrollbar-track {

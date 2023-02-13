@@ -71,9 +71,9 @@ const GeneralPage = () => {
     <>
       <motion.div
         className="general__screen"
-        initial={{ width: 0 }}
-        animate={{ width: "100%" }}
-        exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{duration: 0.75, ease:'easeOut'}}
       >
         <div className="general__screen--left">
           <PageHeader title={"პირადი ინფო"} status={1} />
