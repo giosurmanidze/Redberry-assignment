@@ -240,7 +240,7 @@ const EducationPage = () => {
                     აღწერა
                   </h3>
                   <textarea
-                    className="cv__textArea"
+                    className="cv__textArea text__area--edu"
                     type="text"
                     placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
                     name="description"
@@ -270,7 +270,7 @@ const EducationPage = () => {
           >
             მეტი გამოცდილების დამატება
           </button>
-          <div className="btns">
+          <div className="btns btns2">
             <button type="button" onClick={() => navigate("/experience")}>
               უკან
             </button>

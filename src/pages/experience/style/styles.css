@@ -13,10 +13,13 @@
   overflow-x: hidden;
 }
 
+
+
 .devider--line {
   height: 0px;
   width: 798px;
   border: 1px solid #c1c1c1;
+  margin-top: 40px;
 }
 
 .postion--employer {
@@ -72,6 +75,7 @@ select {
   align-items: center;
   gap: 20px;
   width: 289px;
+  margin-top: 10px;
   height: 48px;
   left: calc(50% - 289px / 2 - 666.5px);
   background: #62a1eb;
@@ -108,6 +112,25 @@ select {
   letter-spacing: 0.08em;
   color: #ffffff;
   position: absolute;
+}
+.btns2 {
+  margin-top: 200px;
+}
+
+.experience__form--container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.experience__form--container .text__area--edu {
+  height: 179px;
+  border: 1px solid #BCBCBC;
+}
+
+.experience__form--container .cv__textArea--exp {
+  height: 123px;
 }
 
 .opt {

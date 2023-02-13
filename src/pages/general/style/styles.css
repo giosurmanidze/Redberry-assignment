@@ -116,7 +116,6 @@ form .last--inputs {
   width: 100%;
 }
 .last--inputs .about__me textarea {
-  height: 103px;
   width: 100%;
   padding: 8px 15px;
   margin-top: 5px;
@@ -230,4 +229,7 @@ form .last--inputs h3, form .last {
   font-size: 16px;
   font-family: HelveticaNeue;
   font-weight: 500;
+}
+.general__area {
+  height: 123px;
 }
