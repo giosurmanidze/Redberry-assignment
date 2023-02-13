@@ -11,7 +11,7 @@ import { StoreContext } from "../../context/appContext";
 import { motion } from "framer-motion";
 
 const GeneralPage = () => {
-  const { store, setStore, handleFileSelect, pageVariants } =
+  const { store, setStore, handleFileSelect, pageVariants, formatPhoneNumber } =
     useContext(StoreContext);
   const [checkFormEl, setCheckFormEl] = useState({});
   const [imgErrMsg, setImgErrMsg] = useState("hide");
@@ -19,25 +19,21 @@ const GeneralPage = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const {value,name} = e.target
-    setStore((prev) => ({ ...prev, [name]:value }));
-    if (!store.image) {
-      setImgErrMsg("show");
-    } else {
-      setImgErrMsg("hide");
+    const { value, name } = e.target;
+    setStore((prev) => ({ ...prev, [name]: value }));
+    !store.image ? setImgErrMsg("show") : setImgErrMsg("hide");
+
+    if (value.startsWith("+995")) {
+      const formattedPhone = formatPhoneNumber(value);
+      setStore((prev) => ({ ...prev, phone_number: formattedPhone }));
     }
   };
-
 
   // EVERY TIMES DATA CHANGES VALIDATE FUNCTION  GET STARTED
   useEffect(() => {
     setCheckFormEl(validatePersonal(store));
     validatePersonal(store);
-    if (!store.image) {
-      setImgErrMsg("show");
-    } else {
-      setImgErrMsg("hide");
-    }
+    !store.image ? setImgErrMsg("show") : setImgErrMsg("hide");
   }, [store]);
 
   useEffect(() => {
@@ -45,17 +41,11 @@ const GeneralPage = () => {
     !store.image && setImgErrMsg("hide");
   }, []);
 
-
-
   // SUBMITED FORM AND CHECK IF DATA IS SUBMITED NAVOGATE NEXT PAGE
   const handleSubmit = (e) => {
     e.preventDefault();
     setCheckFormEl(validatePersonal(store));
-    if (!store.image) {
-      setImgErrMsg("show");
-    } else {
-      setImgErrMsg("hide");
-    }
+    !store.image ? setImgErrMsg("show") : setImgErrMsg("hide");
     if (
       checkFormEl.name &&
       checkFormEl.email &&
@@ -131,7 +121,7 @@ const GeneralPage = () => {
               <div className="about__me">
                 <h3>ჩემ შესახებ (არასავალდებულო)</h3>
                 <textarea
-                className="general__area"
+                  className="general__area"
                   type="text"
                   name="about_me"
                   placeholder="ზოგადი ინფო შენ შესახებ"
@@ -155,6 +145,14 @@ const GeneralPage = () => {
                   name="phone_number"
                   title="მობილურის ნომერი"
                   value={store?.phone_number}
+                  onKey={(e) => {
+                    if (e.keyCode === 8 && store?.phone_number.length > 13) {
+                      setStore({
+                        ...store,
+                        phone_number: store?.phone_number.slice(0, -1),
+                      });
+                    }
+                  }}
                   handleChange={handleChange}
                   checkFormEl={checkFormEl.phone_number}
                   placeholder="+995 551 12 34 56"

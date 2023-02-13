@@ -20,10 +20,12 @@ const EducationPage = () => {
     handleInputChangeEdu,
     setResponseData,
     pageVariants,
+    updatedStore
   } = useContext(StoreContext);
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [degrees, setDegrees] = useState([]);
+  
 
   // GET DEGREES DATA FROM AN API
   useEffect(() => {
@@ -50,30 +52,7 @@ const EducationPage = () => {
     setErrors({});
   }, []);
 
-  const checkDegreeId = (val) => {
-    switch (val) {
-      case "საშუალო სკოლის დიპლომი":
-        return 1;
-      case "ზოგადსაგანმანათლებლო დიპლომი":
-        return 2;
-      case "ბაკალავრი":
-        return 3;
-      case "მაგისტრი":
-        return 4;
-      case "დოქტორი":
-        return 5;
-      case "ასოცირებული ხარისხი":
-        return 6;
-      case "სტუდენტი":
-        return 7;
-      case "კოლეჯი(ხარისიხს გარეშე)":
-        return 8;
-      case "სხვა":
-        return 9;
-      default:
-        return 0;
-    }
-  };
+
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -81,15 +60,6 @@ const EducationPage = () => {
     setErrors(newErrors);
     const ErrorLen = Object.keys(isSubmited).length;
 
-    const updatedStore = {
-      ...store,
-      educations: store.educations?.map((data) => {
-        return {
-          ...data,
-          degree_id: checkDegreeId(data.degree_id),
-        };
-      }),
-    };
 
     const formData = new FormData();
 
@@ -145,6 +115,7 @@ const EducationPage = () => {
     formData.append("about_me", updatedStore.about_me);
   };
 
+  
   return (
     <motion.div
       className="experience__screen"

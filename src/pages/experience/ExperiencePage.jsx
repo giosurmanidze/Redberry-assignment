@@ -15,9 +15,10 @@ import { motion } from "framer-motion";
 
 const ExperiencePage = () => {
   const {store,setExperienceInfo, handleInputChangeExp, pageVariants} = useContext(StoreContext)
-
-  const navigate = useNavigate();
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
+
+
 
   // THIS PIECE OF CODE TAKES CARE OF ERROR HANDLING FOR EVERY CHANGE
   useEffect(() => {
@@ -29,6 +30,7 @@ const ExperiencePage = () => {
     setErrors({});
   }, []);
 
+  
   // IF THE INPUTS DATA IS VALID AND INFORMATION IS POSTED THEN SHOW THIS CV
   const onSubmit = (e) => {
     e.preventDefault();

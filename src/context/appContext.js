@@ -175,6 +175,69 @@ const StoreContextProvider = (props) => {
       }
     }
   };
+
+
+
+  // CHECKING DEGREESM IDs
+  const checkDegreeId = (val) => {
+    switch (val) {
+      case "საშუალო სკოლის დიპლომი":
+        return 1;
+      case "ზოგადსაგანმანათლებლო დიპლომი":
+        return 2;
+      case "ბაკალავრი":
+        return 3;
+      case "მაგისტრი":
+        return 4;
+      case "დოქტორი":
+        return 5;
+      case "ასოცირებული ხარისხი":
+        return 6;
+      case "სტუდენტი":
+        return 7;
+      case "კოლეჯი(ხარისიხს გარეშე)":
+        return 8;
+      case "სხვა":
+        return 9;
+      default:
+        return 0;
+    }
+  };
+
+
+  // UPDATED VERSION OF STORE DATA, THAT WAS GOOD FOR BACK
+  const updatedStore = {
+    ...store,
+    phone_number: store.phone_number.replace(/\s/g, ''),
+    educations: store.educations?.map((data) => {
+      return {
+        ...data,
+        degree_id: checkDegreeId(data.degree_id),
+      };
+    }),
+  };
+
+
+
+  // PHONE GEORGIAN FORMAT
+  const formatPhoneNumber = value => {
+    if (!value) return value;
+    const phoneNumber = value.replace(/[^\d+]/g, "");
+    const phoneNumberLength = phoneNumber.length;
+    if(phoneNumberLength < 5) return phoneNumber;
+    if(phoneNumberLength < 8) {
+      return `${phoneNumber.slice(0,4)} ${phoneNumber.slice(4,7)}`
+    }
+    if(phoneNumberLength < 10) {
+      return `${phoneNumber.slice(0,4)} ${phoneNumber.slice(4,7)} ${phoneNumber.slice(7,11)}`
+    }
+    if(phoneNumberLength < 13) {
+      return `${phoneNumber.slice(0,4)} ${phoneNumber.slice(4,7)} ${phoneNumber.slice(7,9)} ${phoneNumber.slice(9,11)} ${phoneNumber.slice(11,13)}`
+    }
+    return `${phoneNumber.slice(0,4)} ${phoneNumber.slice(4,7)} ${phoneNumber.slice(7,9)} ${phoneNumber.slice(9,11)} ${phoneNumber.slice(11,13)}`
+  }
+  
+
   
   return (
     <StoreContext.Provider
@@ -191,7 +254,10 @@ const StoreContextProvider = (props) => {
         handleInputChangeExp,
         setResponseData,
         responseData,
-        pageVariants
+        pageVariants,
+        checkDegreeId,
+        updatedStore,
+        formatPhoneNumber
       }}
     >
       {props.children}
