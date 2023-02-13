@@ -6,7 +6,6 @@ import { arrowIcon } from "../reusableImports/imports";
 const PageHeader = ({ title, status }) => {
   const { clearLocalStorage } = useContext(StoreContext);
 
-
   return (
     <div className="header__details">
       <div className="arrow__icon">

@@ -1,27 +1,18 @@
 import "./styles/Resume.css";
-import LOGO from "../assets/images/LOGO-12 1.png";
-import EMAIL_ICON from "../assets/images/email-icon.png";
-import PHONE_ICON from "../assets/images/phone-icon.png";
-import DELETE_ICON from "../assets/images/delete--icon.png";
-import { Link, useHref } from "react-router-dom";
-import { useContext, useState } from "react";
-import { arrowIcon } from "../reusableImports/imports";
-import InfoCard from "./InfoCard";
+import { useContext } from "react";
 import { StoreContext } from "../context/appContext";
+import {
+  PHONE_ICON,
+  EMAIL_ICON,
+  LOGO,
+  InfoCard,
+} from "../reusableImports/imports";
 
 const Resume = () => {
-  const { clearLocalStorage, store } = useContext(StoreContext);
-  const [isShowPop, setIsShowPop] = useState(true);
-  const ref = useHref();
+  const { store } = useContext(StoreContext);
 
- 
   return (
     <div className="resume__page">
-      {ref === "/final-page" && (
-        <Link to="/" className="cv__arrow" onClick={clearLocalStorage}>
-          <img src={arrowIcon} alt="arrow" />
-        </Link>
-      )}
       <div className="resume__paper">
         <div className="inner__div">
           <div className="header">
@@ -87,16 +78,6 @@ const Resume = () => {
         </div>
         <img src={LOGO} alt="logo" className="cv-logo" />
       </div>
-      {ref === "/final-page" && isShowPop && (
-        <div className="popUp__card">
-          <img
-            src={DELETE_ICON}
-            alt="delete"
-            onClick={() => setIsShowPop(false)}
-          />
-          <h2>რეზიუმე წარმატებით გაიგზავნა 🎉</h2>
-        </div>
-      )}
     </div>
   );
 };

@@ -24,7 +24,7 @@ const initStore = {
     },
   ],
   // url: "",
-  image:'',
+  image: "",
   about_me: "",
 };
 
@@ -37,7 +37,7 @@ export const StoreContext = createContext();
 
 const StoreContextProvider = (props) => {
   const [store, setStore] = useState(inistialState);
-  const [responseData, setResponseData] = useLocalStorage("responseData", )
+  const [responseData, setResponseData] = useState();
 
   useEffect(() => {
     localStorage.setItem("store", JSON.stringify(store));
@@ -45,23 +45,20 @@ const StoreContextProvider = (props) => {
 
   const clearLocalStorage = () => {
     setStore(initStore);
+    setResponseData();
   };
-
-
 
   // GET IMAGE URL
   const handleFileSelect = (event) => {
-
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
-      
+
       reader.onload = () => {
         const dataUrl = reader.result;
-        setStore((prev) => ({ ...prev, image: dataUrl}));
+        setStore((prev) => ({ ...prev, image: dataUrl }));
       };
-      
     }
   };
 
@@ -81,7 +78,7 @@ const StoreContextProvider = (props) => {
           },
         ],
       };
-      localStorage.setItem("store", JSON.stringify(newStore));
+      // localStorage.setItem("store", JSON.stringify(newStore));
       return newStore;
     });
   };
@@ -99,20 +96,19 @@ const StoreContextProvider = (props) => {
           },
         ],
       };
-      localStorage.setItem("store", JSON.stringify(newStore));
+      // localStorage.setItem("store", JSON.stringify(newStore));
       return newStore;
     });
   };
 
   const handleInputChangeExp = (e, index, field) => {
     const newExperiences = [...store.experiences];
-      newExperiences[index][field] = e.target.value;
+    newExperiences[index][field] = e.target.value;
     setStore((prev) => ({
       ...prev,
-      experiences: newExperiences
+      experiences: newExperiences,
     }));
   };
-
 
   const handleInputChangeEdu = (e, index, field) => {
     const newEducations = [...store.educations];
@@ -123,9 +119,6 @@ const StoreContextProvider = (props) => {
       educations: newEducations,
     }));
   };
-
- 
-
 
   return (
     <StoreContext.Provider
@@ -138,7 +131,8 @@ const StoreContextProvider = (props) => {
         setEducationInfo,
         handleInputChangeEdu,
         handleInputChangeExp,
-        setResponseData, responseData
+        setResponseData,
+        responseData,
       }}
     >
       {props.children}
