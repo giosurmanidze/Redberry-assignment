@@ -20,9 +20,9 @@ const FinalPage = () => {
   return (
     <motion.div
       className="resume__screen"
-      initial={{ width: 0 }}
-      animate={{ width: "100%" }}
-      exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{duration: 0.75, ease:'easeOut'}}
     >
       <div className="cv__info">
         <div className="resume__page">

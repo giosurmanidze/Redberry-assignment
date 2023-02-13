@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
 
 const initStore = {
   name: "",
@@ -23,7 +22,6 @@ const initStore = {
       degree_id: "",
     },
   ],
-  // url: "",
   image: "",
   about_me: "",
 };
@@ -39,14 +37,34 @@ const StoreContextProvider = (props) => {
   const [store, setStore] = useState(inistialState);
   const [responseData, setResponseData] = useState();
 
+
+  const clearLocalStorage = () => {
+    setStore({
+      ...initStore,
+      experiences: [
+        {
+          position: "",
+          employer: "",
+          start_date: "",
+          due_date: "",
+          description: "",
+        },
+      ],
+      educations: [
+        {
+          institute: "",
+          due_date: "",
+          description: "",
+          degree_id: "",
+        },
+      ],
+    });
+  };
+
+  
   useEffect(() => {
     localStorage.setItem("store", JSON.stringify(store));
   }, [store]);
-
-  const clearLocalStorage = () => {
-    setStore(initStore);
-    setResponseData();
-  };
 
   // GET IMAGE URL
   const handleFileSelect = (event) => {
